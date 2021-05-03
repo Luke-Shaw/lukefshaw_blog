@@ -1,0 +1,123 @@
+<script src="2020-06-19-webscraping-public-uksa-letters_files/header-attrs-2.7/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#intro"><span class="toc-section-number">1</span> Intro</a></li>
+<li><a href="#scraping-the-site"><span class="toc-section-number">2</span> Scraping the site</a>
+<ul>
+<li><a href="#theme-table-and-plot"><span class="toc-section-number">2.1</span> Theme table and plot</a></li>
+<li><a href="#individual-letters---2020-in-progress"><span class="toc-section-number">2.2</span> Individual letters - 2020 in progress</a></li>
+</ul></li>
+<li><a href="#further-analysis"><span class="toc-section-number">3</span> Further analysis</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">4</span> Conclusion</a></li>
+</ul>
+</div>
+
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<p>The UK Statistics Authority (UKSA), and its regulatory arm the Office for Statistics Regulation (OSR), play the role of independently regulating and promoting good practice in <a href="https://www.statisticsauthority.gov.uk/about-the-authority/uk-statistical-system/types-of-official-statistics/">official statistics</a>.</p>
+<p>Part of this work is through written publicly available letters with producers of such statistics, the most high-profile of which was the <a href="https://www.statisticsauthority.gov.uk/wp-content/uploads/2017/09/Letter-from-Sir-David-Norgrove-to-Foreign-Secretary.pdf">letter criticising the claim</a> of ‘£350 million per week’ in relation to the UK leaving the EU.</p>
+<p>I am interested in these letters, and having seen them in news stories recently I set out to see what data I could find.</p>
+</div>
+<div id="scraping-the-site" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Scraping the site</h1>
+<p>I used the R package <code>rvest</code> to web scrape the data from their <a href="https://www.statisticsauthority.gov.uk/correspondence-list/">website</a>.</p>
+<p>This was quite fun, though fiddly at times. <strong>All code is available in the GitHub repository <a href="https://github.com/Luke-Shaw/uksa-scrape">uksa-scrape</a>.</strong> I learnt a bit about CSS and webpage construction on the way, and found this <a href="http://flukeout.github.io/">tutorial</a> on CSS selectors fun and useful. The phrase ‘scraping’ feels appropriate, however, as it was not the smoothest of processes and involved a fair few try-and-see attempts until it looked about right!</p>
+<p>I ended up with 2 datasets, one with the number of themed letters, and the other a list of all 1244 letters.</p>
+<p>It is worth noting that the letters can be from official statistics creators to the UKSA as well as the other way round, so multiple letters can exist as a conversation between regulator and creator.</p>
+<div id="theme-table-and-plot" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Theme table and plot</h2>
+<p>Here are the first few elements of the theme table, which has 12 distinct themes and one total. Interestingly nearly half (46%) of the 1244 correspondences are not assigned a theme. This might be correct, or might be due to the theme being a recent addition to the 13 year-long data set.</p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="19%" />
+<col width="53%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">names</th>
+<th align="left">values</th>
+<th align="left">url</th>
+<th align="right">num_letters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Agriculture, Energy and Environment</td>
+<td align="left">agriculture-energy-environment</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=agriculture-energy-environment" class="uri">https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=agriculture-energy-environment</a></td>
+<td align="right">30</td>
+</tr>
+<tr class="even">
+<td align="left">Business, Trade and International Development</td>
+<td align="left">business-trade-international-development</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=business-trade-international-development" class="uri">https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=business-trade-international-development</a></td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left">Children, Education and Skills</td>
+<td align="left">children-education-skills</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=children-education-skills" class="uri">https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=children-education-skills</a></td>
+<td align="right">85</td>
+</tr>
+</tbody>
+</table>
+<p>From plotting the results we can see ‘Health and Social Care’ and ‘Economy’ are the themes with most letters.</p>
+<p><img src="2020-06-19-webscraping-public-uksa-letters_files/figure-html/theme-plot-1.png" width="960" /></p>
+</div>
+<div id="individual-letters---2020-in-progress" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Individual letters - 2020 in progress</h2>
+<p>I was thinking what interesting information I could try and glean from the individual letters. Here are the three most recent rows from the individual letter dataset that I scraped:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="3%" />
+<col width="31%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">title</th>
+<th align="left">date</th>
+<th align="left">subtitle</th>
+<th align="left">url</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ed Humpherson to Neil McIvor: Temporary exemption from Code for DfE attendance statistics</td>
+<td align="left">2020-06-19</td>
+<td align="left">Ed Humpherson, Office for Statistics Regulation to Neil McIvor, Department for Education</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-neil-mcivor-temporary-exemption-from-code-for-dfe-attendance-statistics/" class="uri">https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-neil-mcivor-temporary-exemption-from-code-for-dfe-attendance-statistics/</a></td>
+</tr>
+<tr class="even">
+<td align="left">Ed Humpherson to Ken Roy: User engagement in the Defra Group</td>
+<td align="left">2020-06-18</td>
+<td align="left">Ed Humpherson, Office for Statistics Regulation to Ken Roy, Department for Environment, Food and Rural Affairs</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-ken-roy-user-engagement-in-the-defra-group/" class="uri">https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-ken-roy-user-engagement-in-the-defra-group/</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Letter from Sir David Norgrove to Richard Holden MP</td>
+<td align="left">2020-06-17</td>
+<td align="left">Sir David Norgrove, UK Statistics Authority to Richard Holden MP, House of Commons</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence/letter-from-sir-david-norgrove-to-richard-holden-mp/" class="uri">https://www.statisticsauthority.gov.uk/correspondence/letter-from-sir-david-norgrove-to-richard-holden-mp/</a></td>
+</tr>
+</tbody>
+</table>
+<p>Noticing that there have been 9 letters in June 2020 so far, including one today, I wondered if the number of letters was increasing year on year. Of course, as we haven’t finished 2020, we need to adjust the other years to see if this year is on-track to be the year with the most letters.</p>
+<p><img src="2020-06-19-webscraping-public-uksa-letters_files/figure-html/yearly-plot-1.png" width="960" /></p>
+<p>So the answer is <strong>yes</strong>, although this year is looking similar to the last two.</p>
+</div>
+</div>
+<div id="further-analysis" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Further analysis</h1>
+<p>This is quite a fun data set, and there is more that could be done with it. It might be interesting to try natural language processing (NLP) on the information in the titles or entire letter text, or to see how frequently different government departments are involved. A way of identifying whether it was an inbound or outbound letter, which may well be hidden in the webpage somewhere, would be an interesting additional column to the letters dataset.</p>
+<p>As mentioned above, all the code is on <a href="https://github.com/Luke-Shaw/uksa-scrape">GitHub</a> if anyone out there wants to play around further.</p>
+</div>
+<div id="conclusion" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Conclusion</h1>
+<p>The work the UKSA does is vital in promoting and safeguarding the production and publication of official statistics that ‘serve the public good’. OK, I took most of that last sentence from their website, but I do believe it.</p>
+<p>Through scraping publicly available information, we can see that the UKSA is on track to publish the most letters this year, though the volume is similar to 2018 and 2019.</p>
+</div>

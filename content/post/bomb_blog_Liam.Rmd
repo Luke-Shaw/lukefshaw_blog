@@ -114,17 +114,17 @@ We're not sure whether the London County Council maps contain the whole area tha
 #The boundaries were chosen to have same dimensions a clarke and to 
 #have roughly the same number of bombs in
 xmin = 525000
-xmax = 543000
+xmax = xmin+18000 #543000
 ymin = 172000
-ymax = 180000
+ymax = ymin+8000 #180000
 base_plot+geom_rect(xmin=xmin, xmax=xmax, 
                     ymin=ymin, ymax=ymax,
                     alpha=0.1, fill=NA, colour="red", size=0.5)
 ```
 
-Now we have the grid, we can replicate the analysis to get the same contingency table as Clarke.
+Now we have the grid, we can replicate the analysis to get the same table as Clarke.
 
-## Mirroring Clarke, with a chi-squared warning?
+## Mirroring Clarke
 
 ```{r}
 #cutout just the bombs inside the rectangle
@@ -157,13 +157,35 @@ comparison_df <- rbind(comparison_df,
                        data.frame(num_bombs_per_square = "5 and over", 
                                   poisson = 576-sum(comparison_df$poisson),
                                   actual = as.numeric(table(hits_matrix))[6]))
-# Chi-squared test
-chisq.test(comparison_df[c('poisson','actual')])
+
+# creating function carrying out the chi squared test with correct degrees of freedom
+perform_chi_squared_DOF_DIFF <- function(df, print_result=TRUE){
+  if(!all(c("poisson","actual") %in% names(df))){
+    stop("colnames need to be \"poisson\" and \"actual\"")
+  }
+  df$test_stat_components = (df$actual - df$poisson)^2 / df$poisson
+  test_stat = sum(df$test_stat_components)
+  pvalue = pchisq(test_stat, df = nrow(df)-2, lower.tail=FALSE)
+  if(print_result){
+    print(paste("p value", round(pvalue,5)))
+  } else {
+    return(pvalue)}
+}
+
+perform_chi_squared_DOF_DIFF(comparison_df)
+
+# published vals in Significance Article Fig 2
+comparison_df_fig2 <- tibble(
+  num_bombs_per_square = comparison_df$num_bombs_per_square,
+  poisson = comparison_df$poisson,
+  actual = c(237,189,115,28,6,1)
+  )
+
+perform_chi_squared_DOF_DIFF(comparison_df_fig2)
+
 ```
 
-Hold on a second, what's that error: *"Chi-squared approximation may be incorrect"*? 
-
-It turns out it's because we have small categories, namely the "5 and over" row. One change could be to simulate the values instead (the function has a "simulate.p.value" parameter), but this will still be inconsistent due to the small numbers in the table. All that matters for the narrative is that the p-value is always large, which shows the columns are similar and hence we have no reason to reject the hypothesis that the bombs fell at random in the area chosen. But as a statistician this is still unsatisfying. 
+The above code shows both our comparison table as created here, and the one that is Fig 2 in the Significance article. This is because we created this article months after the original competition submission, and can't exactly replicate the figures used. This is less than perfect, but it doesn't affect the narrative. Not being able to exactly replicate, and it not mattering that much, is a theme throughout this document!
 
 ## Copying Clarke exactly
 
@@ -185,13 +207,18 @@ clarke_df$test_stat_components = (clarke_df$actual - clarke_df$poisson)^2 / clar
 clarke_test_stat = sum(clarke_df$test_stat_components) #1.17
 clarkes_pvalue = pchisq(clarke_test_stat, df = 4, lower.tail=FALSE)
 print(paste('We recreate Clarke\'s p-value as ', clarkes_pvalue, '(he says .88)'))
+
 ```
 
 ## ... Is there a mistake?
 
-We get the same warning as previously when using his table (not shown). So we can replicate Clarke’s example, but…you may be wondering, shouldn’t there be 5 degrees of freedom, not 4? When first shown the chi-squared test you learn the rule that the degrees of freedom is \((number\ of\ rows\ - 1) * (number\ of\ columns - 1)\) which here is \((6-1)*(2-1)\) = 5. Thinking in terms of what “degrees of freedom” means, this makes sense: when you get to the last row the numbers are fixed as we know both columns add to 256.
+We can replicate Clarke’s example, but…you may be wondering, shouldn’t there be 5 degrees of freedom, not 4? When first shown the chi-squared test you learn the rule that the degrees of freedom is \((number\ of\ rows\ - 1) * (number\ of\ columns - 1)\) which here is \((6-1)*(2-1)\) = 5. Thinking in terms of what “degrees of freedom” means, this makes sense: when you get to the last row the numbers are fixed as we know both columns add to 256.
 
 So did Clarke get it wrong? We were pretty certain the answer was “yes”, as this blog and the main article initially claimed. But the real answer is “no", and we are thankful to Erik Holst for this correction. The reason 4 degrees of freedom is correct is that a parameter had been estimated during the table creation - the lambda value used in the calculation of the expected number of squares. Thus we have lost another degree of freedom: \(6 - 1 - 1 = 4\).
+
+In April 2021 it was brought to our attention by Dr Arthur Spirling that this degrees of freedom mistake corrected above had not been corrected further on in the analysis, which we have since rectified. Dr Spirling has made some cool follow-up [course materials](https://github.com/ArthurSpirling/FlyingBombReplication) using this example. 
+
+We were fooled by the use of the `chisq.test()` function in R, which is used for contingency tables which is not what we have in this instance.
 
 Whatever permutation of the degrees of freedom and method we use, the p-value is always large, so the narrative is untouched. The distribution of V-1 impacts is well-described by a Poisson distribution.
 
@@ -432,35 +459,22 @@ circle_comp_df <- rbind(circle_comp_df,
                                   actual = 0))
 circle_comp_df
 # Chi-squared test
-chisq.test(circle_comp_df[c('poisson','actual')])
-```
-
-```{r concave_test, eval=FALSE, echo=FALSE}
-total_circles <- dim(s_concave)[1]
-total_circles
-lambda <- sum(s_concave$num_bombs) / total_circles
-lambda
-circle_comp_df <- data.frame(num_bombs_per_square = 0:4,
-                            poisson = sapply(seq(0, 4), 
-                                             function(x) dpois(x, lambda)*total_circles),
-                            actual = as.numeric(table(s_conmid$num_bombs)[1:5]))
-circle_comp_df <- rbind(circle_comp_df,
-                       data.frame(num_bombs_per_square = "5 and over", 
-                                  poisson = total_circles-sum(circle_comp_df$poisson),
-                                  actual = 0))
-circle_comp_df
-# Chi-squared test
-chisq.test(circle_comp_df[c('poisson','actual')])
+perform_chi_squared_DOF_DIFF(circle_comp_df[c('poisson','actual')])
 ```
 
 Note the p-value is smaller than before. 
 
 ## P-hackers?
 
-In the published article we state a p-value of 0.02 from the simulation (Figure 3). This p-value of 0.1568 is, of course, different. With simulations, the value depends very much on the simulated data, which is 1000 randomly simulated points. One could argue we have effectively performed [p-hacking](https://projects.fivethirtyeight.com/p-hacking/) with simulations, and just chose the best interpretation, but this honestly is not the case! For one thing, we were very careful not to use the 0.05 traditional statistical rule in the main article, focussing instead on the *interpretation* of the p-value. We do not have the exact code and seed from when the original p-value was written, which for context was months prior to when we got around to writing this document, but it seems we got lucky and found a lower p-value than in this document. 
+In the published article we originally stated a p-value of 0.02 from the simulation (Figure 3). This p-value of 0.001 is, of course, different. With simulations, the value depends very much on the simulated data, which is 1000 randomly simulated points. With the same error that Dr Spirling corrected, we previously had a p-value of 0.1568 in this document and had this statement:
 
-However, this does highlight the fact that p-values are quite problematic. If we repeat our simulation 100 times, your intuition might be that the p-values should be similar...but that's far from the case!
+>One could argue we have effectively performed [p-hacking](https://projects.fivethirtyeight.com/p-hacking/) with simulations, and just chose the best interpretation, but this honestly is not the case! For one thing, we were very careful not to use the 0.05 traditional statistical rule in the main article, focussing instead on the *interpretation* of the p-value. We do not have the exact code and seed from when the original p-value was written, which for context was months prior to when we got around to writing this document.
 
+That's the old text, and with the correction the p-value moved in the other direction, in any case the point still stands!
+
+What this does highlight the fact that p-values are quite problematic. If we repeat our simulation 100 times, your intuition might be that the p-values should be similar...but that's not always the case!
+
+This was in fact further made apparent to us in April 2021 when we were made aware of an error in our calculations, causing the p-values to in-fact change in the direction of the narrative of our story (get smaller here). To cap off the irony, of course, the original article was published in "Significance" magazine. 
 
 ```{r, include=FALSE}
 #reading the pvalue table as takes ages to run
@@ -472,7 +486,7 @@ pvals_df <- as_tibble(pvals_df)
 
 #set up the data frame with the known p-value
 pvals_df = tibble(seed = 1749, 
-                  pval = 0.1568)
+                  pval = 0.000497)
 
 for (i in 1:100){
   #sample using seed i
@@ -488,9 +502,11 @@ for (i in 1:100){
                                      poisson = total_circles-sum(circle_comp_df$poisson),
                                      actual = 0))
   # Chi-squared test
-  test = chisq.test(circle_comp_df[c('poisson','actual')])
+  #test = chisq.test(circle_comp_df[c('poisson','actual')])
   #add to data frame
-  pvals_df <- tibble::add_row(pvals_df, seed=i,pval=test$p.value)
+  pvals_df <- tibble::add_row(pvals_df, seed=i,
+                              pval=perform_chi_squared_DOF_DIFF(circle_comp_df,FALSE))
+  print(i)
 }
 ```
 
@@ -500,8 +516,7 @@ ggplot(data=pvals_df,mapping=aes(x=pval)) +
   labs(title = 'p-values for 101 simulations of 1000 points')
 ```
 
-Although there is a peak in the distribution, possible p-values range from very small to quite large. This isn't an original observation, but it should be a reminder about the trickiness of using p-values. Clarke's example is popular in textbooks precisely because it's quite rare to test a fit to a Poisson distribution with a Chi-squared test in such a convincing way. 
-
+Possible p-values range vary, with a clear tendancy to the left-hand end but it's not consistent. This isn't an original observation, but it should be a reminder about the trickiness of using p-values. Clarke's example is popular in textbooks precisely because it's quite rare to test a fit to a Poisson distribution with a Chi-squared test in such a convincing way. 
 
 # Bomb Density
 
@@ -539,7 +554,7 @@ plot(vones$easting, vones$northing, xaxt='n', yaxt='n', ann=FALSE)
 rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "black")
 points(vones$easting,vones$northing, col='white', pch=19, cex=0.2)
 rect(xmin, ymin, xmax, ymax, border = 'red', lty=2)
-first_vone = vones[grep(".First V1.", vones$Description),] # BNG coords (536143, 182870)
+first_vone = vones[grep(".First V1.", vones$description),] # BNG coords (536143, 182870)
 points(first_vone$easting, first_vone$northing, col = 'red', pch=1, cex = 3)
 ```
 

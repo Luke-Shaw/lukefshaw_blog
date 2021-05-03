@@ -6,11 +6,7 @@
     <description>Recent content in Posts on Luke Shaw</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>BeyonTay - rhyming and combining Beyoncé and Taylor Swift lyrics</title>
       <link>/beyontay/</link>
@@ -60,17 +56,8 @@ I’ve learnt some methods for carrying out this process routinely, though I sti
       <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/asking-stack-overflow/</guid>
-      <description>1 IntroStack Overflow is known for being the site you inevitably arrive at when googling a coding question, and I have been passively using it for over 5 years. It’s an invaluable tool when trying to debug code and understand error messages.
+      <description>1 Intro Stack Overflow is known for being the site you inevitably arrive at when googling a coding question, and I have been passively using it for over 5 years. It’s an invaluable tool when trying to debug code and understand error messages.
 The basic idea is that someone has probably got stuck in the same place as you before, and if they asked on Stack Overflow there is then a searchable solution ready and waiting online, as members of the community can post answers.</description>
-    </item>
-    
-    <item>
-      <title>&#34;The flying bomb and the actuary&#34;: supplementary analysis</title>
-      <link>/the-flying-bomb-and-the-actuary-supplementary-analysis/</link>
-      <pubDate>Fri, 04 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/the-flying-bomb-and-the-actuary-supplementary-analysis/</guid>
-      <description>1 About2 Data import and clean3 Replicating Clarke3.1 The Grid3.2 Mirroring Clarke, with a chi-squared warning?3.3 Copying Clarke exactly3.4 … Is there a mistake?4 “Spherical Clarke” - Random Sampling4.1 A border for our data4.2 Creating the simulation4.3 Perform the test4.4 P-hackers?5 Bomb Density6 Conclusions7 References1 AboutThis is a supplementary analysis file for the article “The flying bomb and the actuary” published in Significance (October 2019).</description>
     </item>
     
   </channel>
