@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Identifying differences in data sets | Luke Shaw</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/about/">About</a></li>
+      
+      <li><a href="/cv/">CV</a></li>
+      
+      <li><a href="/post/">Posts</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Identifying differences in data sets</span></h1>
+<h2 class="author">Luke Shaw</h2>
+<h2 class="date">2020/02/28</h2>
+</div>
+
+<main>
+
+
+
+<div id="intro" class="section level1">
+<h1>Intro</h1>
+<p>Often in my work I end up asking the following question:</p>
+<blockquote>
+<p>We have just run the same process X days apart - are the results the same?</p>
+</blockquote>
+<p>This could be for taking routine data cuts from a live system, to fitting models, to a cleaning process. Sadly the second option, which is the most fun, is the least common.</p>
+<p>I’ve learnt some methods for carrying out this process routinely, though I still have lots to learn. This post documents some of the tricks I’ve learnt. Mostly it’s in R, though there is some Excel too.</p>
+</div>
+<div id="are-they-identical-check-with-all_equal" class="section level1">
+<h1>1. Are they identical? Check with all_equal</h1>
+<p>If the data sets are in fact the same, hooray! There’s a quick check for that using <code>all_equal</code>:</p>
+<pre class="r"><code>#test data sets
+first_df &lt;- tibble::tibble(col1 = 1:4, col2 = letters[1:4], col3 = LETTERS[1:4])
+second_df &lt;- first_df
+
+#the all_equal function is a great first step
+dplyr::all_equal(first_df, second_df)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>As an aside, if you’ve not seen the <code>::</code> notation before, <code>x::y</code> means from package <code>x</code> get function <code>y</code>. This may seem pedantic, but is best practice and after seeing that the <code>filter</code> function means a different thing if you’re using tidyverse or just in Base R - I’m trying to do my best to always use the notation.</p>
+<p>The <code>all_equal</code> function ignores row and column order by default, which is a <strong>good</strong> thing as that shouldn’t matter for our data sets.</p>
+<p>When it fails, though, I don’t find it that useful as it tells you the rows that aren’t the same but nothing further.</p>
+</div>
+<div id="whats-different-the-comparedf-package" class="section level1">
+<h1>2. What’s different? The compareDF package</h1>
+<p>The compareDF package is cool for showing you nicely where the differences lie in your data sets. This <a href="https://www.r-bloggers.com/comparing-dataframes-in-r-using-comparedf/">r-bloggers post</a> does a much better job than I will here.</p>
+<pre class="r"><code>#make data sets different
+second_df$col3[2] = &quot;z&quot;
+
+#the all_equal function isn&#39;t that helpful -
+#imagine if we had hundreds or more rows
+dplyr::all_equal(first_df, second_df)</code></pre>
+<pre><code>## [1] &quot;Rows in x but not y: 2. Rows in y but not x: 2. &quot;</code></pre>
+<pre class="r"><code>#enter compareDF. The group_col is the way of matching the rows for the data
+library(compareDF)
+ctable &lt;- compareDF::compare_df(first_df,second_df, group_col = &quot;col1&quot;)</code></pre>
+<pre><code>## Creating comparison table...</code></pre>
+<pre class="r"><code>#you can quickly get a feel for how different the data sets are
+ctable$change_summary</code></pre>
+<pre><code>##   old_obs   new_obs   changes additions  removals 
+##         4         4         1         0         0</code></pre>
+<pre class="r"><code>#and there are some really other neat tools - like this one showing 
+#the row from each data set next to each other showing the difference 
+#(its in col3)
+ctable$comparison_df</code></pre>
+<pre><code>##   col1 chng_type col2 col3
+## 1    2         +    b    B
+## 2    2         -    b    z</code></pre>
+<p>A nice thing about the <code>compareDF</code> package is you immediately get a sense of how different the data sets are, or as it usually feels at work; “how big is the problem?”.</p>
+</div>
+<div id="still-confused-open-excel" class="section level1">
+<h1>3. Still confused? Open Excel</h1>
+<p>This brings me to a potential sore point - taking a look in Excel. Even if the process is entirely built in R, I still find it useful to root around in an Excel file identifying data set differences.</p>
+<p>I used to use Excel from the get-go, which I maintain is not best practice. Excel work is not reproducible, and I have lost <strong>days</strong> trying to work out how someone did the manual Excel task before me. Did they delete columns? Change the date type? Drag the formula down? Who knows.</p>
+<p>The scenario I am talking about is when there is a specific example and I need to know I understand, for myself, where the two data sets are different - to understand if it’s a problem or not. It’s easier to see data in Excel than in R.</p>
+<p>Excel has some nice point-and-click options like ‘remove duplicates’ and ‘conditional formatting’, but it’s a slow task doing that from the beginning. Instead, my process is now the following:</p>
+<ol style="list-style-type: decimal">
+<li>If I’m expecting the data sets to be identical - try <code>all_equal</code></li>
+<li>If they’re not, use the <code>compareDF</code> package</li>
+<li>If the differences are large and I can’t explain it after 5 mins in R, save the files to Excel. This includes some of the nice outputs from <code>compare_df</code>. I then root around the file trying to work out why these flipping data sets are different</li>
+<li>(often) Sheepishly realise I changed the code and that explains the difference.</li>
+</ol>
+</div>
+<div id="catch-the-problem-early---assertr" class="section level1">
+<h1>Catch the problem early - assertr</h1>
+<p>I have recently started adding sprinkles of <a href="https://github.com/ropensci/assertr"><code>assertr</code></a> to my code. Again, <a href="https://cran.r-project.org/web/packages/assertr/vignettes/assertr.html">this vignette</a> explains it far more thoroughly than I do here.</p>
+<p>What the <code>assertr</code> package allows is for a load of sense checks on the data, such as “are all values positive?” or “are there enough rows for this to be the right data set?”. If the checks fail, the process is stopped before the damage is done in the analysis/wrangling, by which point the original issue is obscured.</p>
+<pre class="r"><code>library(assertr)
+second_df %&gt;%
+  assertr::verify(col1 &gt; 0) %&gt;%
+  assertr::verify(nrow(.)&gt;3) %&gt;%
+  #check column 3 only contains capital letters
+  assertr::assert(in_set(LETTERS), col3)</code></pre>
+<pre><code>## Column &#39;col3&#39; violates assertion &#39;in_set(LETTERS)&#39; 1 time
+##     verb redux_fn       predicate column index value
+## 1 assert       NA in_set(LETTERS)   col3     2     z
+## 
+## &lt;simpleError: assertr stopped execution&gt;</code></pre>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>There are many ways of finding out where the differences are in the data sets, which is a common task in my work. I still have lots to learn, but the above show some R tools I find useful when trying to identify the inconsistencies.</p>
+</div>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+  </footer>
+  </body>
+</html>
+

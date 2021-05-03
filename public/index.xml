@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Luke Shaw</title>
+    <link>/</link>
+    <description>Recent content in Blogs on Luke Shaw</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>BeyonTay - rhyming and combining Beyoncé and Taylor Swift lyrics</title>
+      <link>/beyontay/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/beyontay/</guid>
+      <description>IntroFor TidyTuesday 2020 week 40 I created code to randomly pair Beyoncé and Taylor Swift rhyming lyrics.
+If you want to make your own BeyonTay verse, you need the following things:
+be willing to code in RIf the above criteria are satisfied, head over to the GitHub repo. Feel free to reach out if you have any issues or questions.
+In the rest of this blog post I’ll talk about how I went about getting to this output, with some musings on the way.</description>
+    </item>
+    
+    <item>
+      <title>Web scraping public UKSA letters</title>
+      <link>/webscraping-public-uksa-letters/</link>
+      <pubDate>Fri, 19 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/webscraping-public-uksa-letters/</guid>
+      <description>1 Intro2 Scraping the site2.1 Theme table and plot2.2 Individual letters - 2020 in progress3 Further analysis4 Conclusion1 IntroThe UK Statistics Authority (UKSA), and its regulatory arm the Office for Statistics Regulation (OSR), play the role of independently regulating and promoting good practice in official statistics.
+Part of this work is through written publicly available letters with producers of such statistics, the most high-profile of which was the letter criticising the claim of ‘£350 million per week’ in relation to the UK leaving the EU.</description>
+    </item>
+    
+    <item>
+      <title>UK river flow data</title>
+      <link>/river-flow-data/</link>
+      <pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/river-flow-data/</guid>
+      <description>1 Intro2 Project reflections2.1 Dates dates dates2.2 Data cleaning2.3 More dates2.4 Uncertainty over ‘old’ code3 Trying winfapReader3.1 Set-up and location3.2 Getting POT data3.3 First plot3.4 Consistent time period3.5 When were the most POTs?4 ConclusionIn this post I’m going to try out the recently published winfapReader R package for getting UK river flow data, and think about what I have learnt since my involvement in the project three years ago.</description>
+    </item>
+    
+    <item>
+      <title>Identifying differences in data sets</title>
+      <link>/identifying-differences-in-data-sets/</link>
+      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/identifying-differences-in-data-sets/</guid>
+      <description>IntroOften in my work I end up asking the following question:
+We have just run the same process X days apart - are the results the same?
+This could be for taking routine data cuts from a live system, to fitting models, to a cleaning process. Sadly the second option, which is the most fun, is the least common.
+I’ve learnt some methods for carrying out this process routinely, though I still have lots to learn.</description>
+    </item>
+    
+    <item>
+      <title>Asking Stack Overflow</title>
+      <link>/asking-stack-overflow/</link>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/asking-stack-overflow/</guid>
+      <description>1 IntroStack Overflow is known for being the site you inevitably arrive at when googling a coding question, and I have been passively using it for over 5 years. It’s an invaluable tool when trying to debug code and understand error messages.
+The basic idea is that someone has probably got stuck in the same place as you before, and if they asked on Stack Overflow there is then a searchable solution ready and waiting online, as members of the community can post answers.</description>
+    </item>
+    
+    <item>
+      <title>&#34;The flying bomb and the actuary&#34;: supplementary analysis</title>
+      <link>/the-flying-bomb-and-the-actuary-supplementary-analysis/</link>
+      <pubDate>Fri, 04 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/the-flying-bomb-and-the-actuary-supplementary-analysis/</guid>
+      <description>1 About2 Data import and clean3 Replicating Clarke3.1 The Grid3.2 Mirroring Clarke, with a chi-squared warning?3.3 Copying Clarke exactly3.4 … Is there a mistake?4 “Spherical Clarke” - Random Sampling4.1 A border for our data4.2 Creating the simulation4.3 Perform the test4.4 P-hackers?5 Bomb Density6 Conclusions7 References1 AboutThis is a supplementary analysis file for the article “The flying bomb and the actuary” published in Significance (October 2019).</description>
+    </item>
+    
+    <item>
+      <title>CV</title>
+      <link>/cv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/cv/</guid>
+      <description>A flavour of my professional career is here as opposed to a full CV, though one can be made available on request.
+Coding Frankly, I love coding in R. Since January of 2014, I have coded in R wherever possible. Some of the things I have used R to do:
+ Statistical modelling such as Baysesian computations, clustering, and GLMs Data visualisation using ggplot2 and the tidyverse world Website creation&amp;hellip; this website!</description>
+    </item>
+    
+    <item>
+      <title>Stats &#39;n&#39; Stuff</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>About Hi. I&#39;m a statistician / data scientist / analyst (order not relevant) working for the UK Government.
+This website is a home for internet stuff I do relating to statistics and data. I like the language R, but we have an open(source) relationship.
+I decided to make this website, using the R package blogdown, after attending the EARL 2018 and RSS 2019 conferences. The website theme is hugo-xmin.
+Contact Feel free to get in touch, email &amp;lt;the text below&amp;gt;@gmail.</description>
+    </item>
+    
+  </channel>
+</rss>

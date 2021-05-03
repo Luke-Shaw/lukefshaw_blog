@@ -1,0 +1,78 @@
+---
+title: BeyonTay - rhyming and combining Beyoncé and Taylor Swift lyrics
+author: Luke Shaw
+date: '2020-12-31'
+slug: beyontay
+---
+
+
+
+<div id="intro" class="section level1">
+<h1>Intro</h1>
+<p>For <a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a> 2020 week 40 I created code to randomly pair Beyoncé and Taylor Swift rhyming lyrics.</p>
+<p><img src="https://raw.githubusercontent.com/Luke-Shaw/beyontay/master/figs/beyontay-seed-25.png" /></p>
+<p>If you want to make your own BeyonTay verse, you need the following things:</p>
+<ol style="list-style-type: decimal">
+<li>be willing to code in R</li>
+</ol>
+<p>If the above criteria are satisfied, head over to the <a href="https://github.com/Luke-Shaw/beyontay">GitHub repo</a>. Feel free to reach out if you have any issues or questions.</p>
+<blockquote>
+<p>In the rest of this blog post I’ll talk about how I went about getting to this output, with some musings on the way. Each section will end with a BeyonTay verse to break up the text.</p>
+</blockquote>
+</div>
+<div id="wrangling" class="section level1">
+<h1>Wrangling</h1>
+<p>The <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-09-29">raw data</a> needed some playing with to become make the different sets of Beyoncé and Taylor Swift lyrics comparable. I used the tidyverse flavour of R for this (code <a href="https://github.com/Luke-Shaw/beyontay/blob/master/making_data.R">here</a>), in keeping with TidyTuesday, but I won’t say much more than that as it’s not that interesting.</p>
+<p>I was a bit slapdash with my data prep, but I think it’s important to note that that doesn’t matter because this is a silly for-fun project. The consequences of getting this wrong are… nothing? Maybe mild embarrassment at worst. The point being, it is OK to be a bit fast and carefree if the project is inconsequential, but our code can, and often does, have consequences so it is important to really think about the potential harm down the line once your code is deployed. <a href="https://www.youtube.com/watch?v=LZM9YdO_QKk">Tom Scott</a> explains this point far more eloquently.</p>
+<p><img src="https://raw.githubusercontent.com/Luke-Shaw/beyontay/master/figs/beyontay-seed-2.png" /></p>
+</div>
+<div id="the-idea" class="section level1">
+<h1>The idea</h1>
+<p>I had this thought ‘how can I combine the data sets?’, which led to the thought ‘could I make a Beyoncé / Taylor Swift lyric set?’ which led to ‘could I find rhymes to make a BeyonTay verse?’</p>
+<p>Not documented are the many other failed ideas I had. One example was seeing ‘who uses words which didn’t exist in the formal English language?’ but it didn’t really work. There’s always a lot of the iceberg you don’t see.</p>
+<p><img src="https://raw.githubusercontent.com/Luke-Shaw/beyontay/master/figs/beyontay-seed-42.png" /></p>
+</div>
+<div id="finding-rhymes" class="section level1">
+<h1>Finding rhymes</h1>
+<blockquote>
+<p>How can you tell if two words rhyme?</p>
+</blockquote>
+<p>My first thought was to try matching the end of words, but then the english language isn’t that straight-forward - we would miss that “time” and “rhyme” don’t rhyme, and incorrectly assert that “food” and “good” do rhyme. As an aside, I wonder if the reason the Co-Op <a href="https://www.thegrocer.co.uk/traditional-retailers/the-co-op-group-drops-good-with-food-for-new-strapline/233861.article">dropped their slogan</a> “good with food” is because it reads like it should rhyme, but doesn’t.</p>
+<p>Any other ideas?</p>
+<p>Aha! The international phonetic alphabet (IPA)! It tells you how words <strong>sound</strong>, which is what we’re after really. It turns out if you want a good API, so you can send an English word and it will return the IPA, you have to spend money. It’s one of the services the big Dictionary companies provide now. Ah well. Good for them, I guess.</p>
+<p>As an alternative to an IPA API, I found this site <a href="https://www.phonetizer.com/ui#">phonetizer</a> which has a user interface for inputting english and outputting IPA.</p>
+<p>I did some real code bodging at this step (for a bodging explanation see <a href="https://www.youtube.com/watch?v=lIFE7h3m40U">this Tom Scott video</a> - yes I am aware I have referenced him twice now).</p>
+<p>My Bodge Solution:</p>
+<ul>
+<li><p><em>Strip words of all non-alphanumeric characters except for apostrophes.</em> Through trial and error with phonetizer on a small subset of words this looked like the best bet.</p></li>
+<li><p><em>select only the unique words at the end of a lyric line.</em> This gave me the 3,635 words I wanted to find IPA for, which is much more manageable than the 29,874 individual lines or the 211,430 words. Literally orders of magnitude easier.</p></li>
+<li><p><em>print as an output in my R console with ‘::’ as a word separator.</em> This is because phonetizer removed characters, like the comma, but :: translated to () which was perfect as a word separator.</p></li>
+<li><p><em>copy the entire text from R, put in phonetizer, then copy the IPA output into Libre Office Writer, then save as a text file with UTF-8 encoding, then read that output back into R.</em> Not the prettiest of processes. I came to this because, as I’ve learnt many times, encoding can be a real pain. Special characters are fiddly, and IPA is almost by definition full of them. My initial bodge was to use the datapasta R package, but it couldn’t handle the IPA characters.</p></li>
+<li><p><em>If it has the last 3 IPA characters the same, it’s a rhyme.</em> From trial and error this seems most sensible. I chose to exclude homophones, words that sound identical, because as far as I am concerned “air” doesn’t rhyme with “heir” (nor, for that matter, does “air” rhyme with “air”).</p></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Luke-Shaw/beyontay/master/figs/beyontay-seed-50.png" /></p>
+</div>
+<div id="visualising-the-answers" class="section level1">
+<h1>Visualising the answers</h1>
+<p>I decided that rhyming couplets were the way forward, and that it should always be a match across artist. The idea of a Beyontay verse came quite naturally as a pair of rhyming couplets, so I used ggplot to visualise such a thing. I also limited the length of each line to be at most 40 characters, to stop them running of the right hand side of the image.</p>
+<p><img src="https://raw.githubusercontent.com/Luke-Shaw/beyontay/master/figs/beyontay-seed-39.png" /></p>
+</div>
+<div id="issues-with-the-results" class="section level1">
+<h1>Issues with the results</h1>
+<p>There are a few problems with my approach.</p>
+<p>Firstly, the last 3 letters of IPA aren’t always sufficient. For example, “don’t” and “amount” are given as valid rhymes via this method because their IPAs are “dəʊnt” and “əˈmaʊnt”. Damn. I can’t see a sensible way round this problem (as you probably have worked out by now, I ain’t no linguist). Another example is in the above image; “running” and “drowning”.</p>
+<p>Secondly, a vast number of words are totally ignored. For example, the two most common line ending words are “you” and “me”, and they account for 7.6% of all the line enders (2260 out of 29571). Now, for both of them there is no rhyme pair in the data set. Why? Because their entire word is taken as the match for the rhyme, as they are short words with under 4 IPA characters making them up. So “me” and “be” don’t rhyme with my definition of last 3 IPA character matching. Dangit.</p>
+<p><img src="https://raw.githubusercontent.com/Luke-Shaw/beyontay/master/figs/beyontay-seed-35.png" /></p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>This is stupid, but fun.</p>
+<p>My favourite rhyming couplet to come out of it was this:</p>
+<blockquote>
+<p>And you don’t know what you don’t know</p>
+</blockquote>
+<blockquote>
+<p>I threw myself into a volcano</p>
+</blockquote>
+<p>Pure poetry from BeyonTay.</p>
+</div>

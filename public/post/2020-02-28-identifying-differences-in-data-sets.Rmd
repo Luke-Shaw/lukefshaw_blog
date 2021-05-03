@@ -1,0 +1,111 @@
+---
+title: Identifying differences in data sets
+author: Luke Shaw
+date: '2020-02-28'
+slug: identifying-differences-in-data-sets
+---
+
+# Intro
+
+Often in my work I end up asking the following question:
+
+> We have just run the same process X days apart - are the results the same?
+
+This could be for taking routine data cuts from a live system, to fitting models, to a cleaning process. Sadly the second option, which is the most fun, is the least common. 
+
+I've learnt some methods for carrying out this process routinely, though I still have lots to learn. This post documents some of the tricks I've learnt. Mostly it's in R, though there is some Excel too.
+
+# 1. Are they identical? Check with all_equal
+
+If the data sets are in fact the same, hooray! There's a quick check for that using `all_equal`:
+
+```{r identical-case, message=FALSE}
+
+#test data sets
+first_df <- tibble::tibble(col1 = 1:4, col2 = letters[1:4], col3 = LETTERS[1:4])
+second_df <- first_df
+
+#the all_equal function is a great first step
+dplyr::all_equal(first_df, second_df)
+```
+
+As an aside, if you've not seen the `::` notation before, `x::y` means from package `x` get function `y`. This may seem pedantic, but is best practice and after seeing that the `filter` function means a different thing if you're using tidyverse or just in Base R - I'm trying to do my best to always use the notation. 
+
+The `all_equal` function ignores row and column order by default, which is a **good** thing as that shouldn't matter for our data sets.
+
+When it fails, though, I don't find it that useful as it tells you the rows that aren't the same but nothing further.
+
+# 2. What's different? The compareDF package
+
+The compareDF package is cool for showing you nicely where the differences lie in your data sets. This [r-bloggers post](https://www.r-bloggers.com/comparing-dataframes-in-r-using-comparedf/) does a much better job than I will here.
+
+
+```{r difference-case}
+#make data sets different
+second_df$col3[2] = "z"
+
+#the all_equal function isn't that helpful -
+#imagine if we had hundreds or more rows
+dplyr::all_equal(first_df, second_df)
+
+#enter compareDF. The group_col is the way of matching the rows for the data
+library(compareDF)
+ctable <- compareDF::compare_df(first_df,second_df, group_col = "col1")
+#you can quickly get a feel for how different the data sets are
+ctable$change_summary
+#and there are some really other neat tools - like this one showing 
+#the row from each data set next to each other showing the difference 
+#(its in col3)
+ctable$comparison_df
+```
+A nice thing about the `compareDF` package is you immediately get a sense of how different the data sets are, or as it usually feels at work; "how big is the problem?".
+
+# 3. Still confused? Open Excel
+
+This brings me to a potential sore point - taking a look in Excel. Even if the process is entirely built in R, I still find it useful to root around in an Excel file identifying data set differences. 
+
+I used to use Excel from the get-go, which I maintain is not best practice. Excel work is not reproducible, and I have lost **days** trying to work out how someone did the manual Excel task before me. Did they delete columns? Change the date type? Drag the formula down? Who knows.
+
+The scenario I am talking about is when there is a specific example and I need to know I understand, for myself, where the two data sets are different - to understand if it's a problem or not. It's easier to see data in Excel than in R.
+
+Excel has some nice point-and-click options like 'remove duplicates' and 'conditional formatting', but it's a slow task doing that from the beginning. Instead, my process is now the following:
+
+1. If I'm expecting the data sets to be identical - try `all_equal`
+2. If they're not, use the `compareDF` package
+3. If the differences are large and I can't explain it after 5 mins in R, save the files to Excel. This includes some of the nice outputs from `compare_df`. I then root around the file trying to work out why these flipping data sets are different
+4. (often) Sheepishly realise I changed the code and that explains the difference.
+
+# Catch the problem early - assertr
+
+I have recently started adding sprinkles of [`assertr`](https://github.com/ropensci/assertr) to my code. Again, [this vignette](https://cran.r-project.org/web/packages/assertr/vignettes/assertr.html) explains it far more thoroughly than I do here.
+
+What the `assertr` package allows is for a load of sense checks on the data, such as "are all values positive?" or "are there enough rows for this to be the right data set?". If the checks fail, the process is stopped before the damage is done in the analysis/wrangling, by which point the original issue is obscured.
+
+```{r assertr-example-not-run, eval=FALSE, echo=TRUE}
+library(assertr)
+second_df %>%
+  assertr::verify(col1 > 0) %>%
+  assertr::verify(nrow(.)>3) %>%
+  #check column 3 only contains capital letters
+  assertr::assert(in_set(LETTERS), col3)
+```
+
+```{r assertr-example-tryCatch, eval=TRUE, echo=FALSE, message=FALSE}
+#run but not shown as tryCatch for example
+library(tidyverse)
+library(assertr)
+tryCatch(
+    second_df %>%
+    assertr::verify(col1 > 0) %>%
+    assertr::verify(nrow(.)>3) %>%
+    #check column 3 only contains capital letters
+    assertr::assert(in_set(LETTERS), col3),
+  error = function(e){print(e)}
+)
+
+```
+# Conclusion
+
+There are many ways of finding out where the differences are in the data sets, which is a common task in my work. I still have lots to learn, but the above show some R tools I find useful when trying to identify the inconsistencies.
+
+

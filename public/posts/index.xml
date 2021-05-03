@@ -1,0 +1,1175 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on Luke Shaw</title>
+		<link>/posts/</link>
+		<description>Recent content in Posts on Luke Shaw</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-gb</language>
+		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+		<lastBuildDate>Sun, 13 Sep 2020 00:00:00 +0000</lastBuildDate>
+		<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Choosing my Fantasy Premier League Team</title>
+			<link>/posts/choosing-my-fantasy-premier-league-team/</link>
+			<pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
+			
+			<guid>/posts/choosing-my-fantasy-premier-league-team/</guid>
+			<description>1 Intro2 Defining the task3 Getting the data4 Iteratively picking my 15 players5 The final 116 Assumptions made along the way7 How did it go?8 Conclusion and next steps1 IntroThis weekend the Premier League kicked-off for the 2020/21 season. This means Fantasy Premier League (FPL) is also back, the game of picking players from across the league into a fictional team, and how they perform in real life corresponds to the points they get.</description>
+			<content type="html"><![CDATA[
+
+<div id="TOC">
+<ul>
+<li><a href="#intro"><span class="toc-section-number">1</span> Intro</a></li>
+<li><a href="#defining-the-task"><span class="toc-section-number">2</span> Defining the task</a></li>
+<li><a href="#getting-the-data"><span class="toc-section-number">3</span> Getting the data</a></li>
+<li><a href="#iteratively-picking-my-15-players"><span class="toc-section-number">4</span> Iteratively picking my 15 players</a></li>
+<li><a href="#the-final-11"><span class="toc-section-number">5</span> The final 11</a></li>
+<li><a href="#assumptions-made-along-the-way"><span class="toc-section-number">6</span> Assumptions made along the way</a></li>
+<li><a href="#how-did-it-go"><span class="toc-section-number">7</span> How did it go?</a></li>
+<li><a href="#conclusion-and-next-steps"><span class="toc-section-number">8</span> Conclusion and next steps</a></li>
+</ul>
+</div>
+
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<p>This weekend the Premier League kicked-off for the 2020/21 season. This means Fantasy Premier League (FPL) is also back, the game of picking players from across the league into a fictional team, and how they perform in real life corresponds to the points they get.</p>
+<p>This year, I have chosen to do some data visualisation to chose my team. This blog details my rough-and-ready approach.</p>
+</div>
+<div id="defining-the-task" class="section level1">
+<h1><span class="header-section-number">2</span> Defining the task</h1>
+<p>Without going into to much detail</p>
+</div>
+<div id="getting-the-data" class="section level1">
+<h1><span class="header-section-number">3</span> Getting the data</h1>
+</div>
+<div id="iteratively-picking-my-15-players" class="section level1">
+<h1><span class="header-section-number">4</span> Iteratively picking my 15 players</h1>
+</div>
+<div id="the-final-11" class="section level1">
+<h1><span class="header-section-number">5</span> The final 11</h1>
+</div>
+<div id="assumptions-made-along-the-way" class="section level1">
+<h1><span class="header-section-number">6</span> Assumptions made along the way</h1>
+<p>Football is immensely complicated, and as so much money is made through the game there are clearly cutting-edge techniques being applied to get as much of an edge in quantifying the incredible uncertainty.</p>
+</div>
+<div id="how-did-it-go" class="section level1">
+<h1><span class="header-section-number">7</span> How did it go?</h1>
+</div>
+<div id="conclusion-and-next-steps" class="section level1">
+<h1><span class="header-section-number">8</span> Conclusion and next steps</h1>
+<p>I enjoyed the hours spent putting this together and thinking about data in combination with a subject I enjoy.</p>
+<p>My downfall this year is most likely to be the same as every year, which is losing interest and forgetting to update my team each week. To combat that I have signed-up to calendar notifications for the gameweek deadlines, but realistically it will probably still happen.</p>
+<p>The next steps would be to work on a methodology for picking the starting 11 each week, and deciding how to use the one transfer per gameweek. There are also 3 wildcard options to consider.</p>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Web scraping public UKSA letters</title>
+			<link>/posts/webscraping-public-uksa-letters/</link>
+			<pubDate>Fri, 19 Jun 2020 00:00:00 +0000</pubDate>
+			
+			<guid>/posts/webscraping-public-uksa-letters/</guid>
+			<description>1 Intro2 Scraping the site2.1 Theme table and plot2.2 Individual letters - 2020 in progress3 Further analysis4 Conclusion1 IntroThe UK Statistics Authority (UKSA), and its regulatory arm the Office for Statistics Regulation (OSR), play the role of independently regulating and promoting good practice in official statistics.
+Part of this work is through written publicly available letters with producers of such statistics, the most high-profile of which was the letter criticising the claim of ‘£350 million per week’ in relation to the UK leaving the EU.</description>
+			<content type="html"><![CDATA[
+
+<div id="TOC">
+<ul>
+<li><a href="#intro"><span class="toc-section-number">1</span> Intro</a></li>
+<li><a href="#scraping-the-site"><span class="toc-section-number">2</span> Scraping the site</a><ul>
+<li><a href="#theme-table-and-plot"><span class="toc-section-number">2.1</span> Theme table and plot</a></li>
+<li><a href="#individual-letters---2020-in-progress"><span class="toc-section-number">2.2</span> Individual letters - 2020 in progress</a></li>
+</ul></li>
+<li><a href="#further-analysis"><span class="toc-section-number">3</span> Further analysis</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">4</span> Conclusion</a></li>
+</ul>
+</div>
+
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<p>The UK Statistics Authority (UKSA), and its regulatory arm the Office for Statistics Regulation (OSR), play the role of independently regulating and promoting good practice in <a href="https://www.statisticsauthority.gov.uk/about-the-authority/uk-statistical-system/types-of-official-statistics/">official statistics</a>.</p>
+<p>Part of this work is through written publicly available letters with producers of such statistics, the most high-profile of which was the <a href="https://www.statisticsauthority.gov.uk/wp-content/uploads/2017/09/Letter-from-Sir-David-Norgrove-to-Foreign-Secretary.pdf">letter criticising the claim</a> of ‘£350 million per week’ in relation to the UK leaving the EU.</p>
+<p>I am interested in these letters, and having seen them in news stories recently I set out to see what data I could find.</p>
+</div>
+<div id="scraping-the-site" class="section level1">
+<h1><span class="header-section-number">2</span> Scraping the site</h1>
+<p>I used the R package <code>rvest</code> to web scrape the data from their <a href="https://www.statisticsauthority.gov.uk/correspondence-list/">website</a>.</p>
+<p>This was quite fun, though fiddly at times. <strong>All code is available in the GitHub repository <a href="https://github.com/Luke-Shaw/uksa-scrape">uksa-scrape</a>.</strong> I learnt a bit about CSS and webpage construction on the way, and found this <a href="http://flukeout.github.io/">tutorial</a> on CSS selectors fun and useful. The phrase ‘scraping’ feels appropriate, however, as it was not the smoothest of processes and involved a fair few try-and-see attempts until it looked about right!</p>
+<p>I ended up with 2 datasets, one with the number of themed letters, and the other a list of all 1244 letters.</p>
+<p>It is worth noting that the letters can be from official statistics creators to the UKSA as well as the other way round, so multiple letters can exist as a conversation between regulator and creator.</p>
+<div id="theme-table-and-plot" class="section level2">
+<h2><span class="header-section-number">2.1</span> Theme table and plot</h2>
+<p>Here are the first few elements of the theme table, which has 12 distinct themes and one total. Interestingly nearly half (46%) of the 1244 correspondences are not assigned a theme. This might be correct, or might be due to the theme being a recent addition to the 13 year-long data set.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">names</th>
+<th align="left">values</th>
+<th align="left">url</th>
+<th align="right">num_letters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Agriculture, Energy and Environment</td>
+<td align="left">agriculture-energy-environment</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=agriculture-energy-environment" class="uri">https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=agriculture-energy-environment</a></td>
+<td align="right">30</td>
+</tr>
+<tr class="even">
+<td align="left">Business, Trade and International Development</td>
+<td align="left">business-trade-international-development</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=business-trade-international-development" class="uri">https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=business-trade-international-development</a></td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left">Children, Education and Skills</td>
+<td align="left">children-education-skills</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=children-education-skills" class="uri">https://www.statisticsauthority.gov.uk/correspondence-list/?keyword=&amp;theme=children-education-skills</a></td>
+<td align="right">85</td>
+</tr>
+</tbody>
+</table>
+<p>From plotting the results we can see ‘Health and Social Care’ and ‘Economy’ are the themes with most letters.</p>
+<p><img src="/post/2020-06-19-webscraping-public-uksa-letters_files/figure-html/theme-plot-1.png" width="960" /></p>
+</div>
+<div id="individual-letters---2020-in-progress" class="section level2">
+<h2><span class="header-section-number">2.2</span> Individual letters - 2020 in progress</h2>
+<p>I was thinking what interesting information I could try and glean from the individual letters. Here are the three most recent rows from the individual letter dataset that I scraped:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">title</th>
+<th align="left">date</th>
+<th align="left">subtitle</th>
+<th align="left">url</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ed Humpherson to Neil McIvor: Temporary exemption from Code for DfE attendance statistics</td>
+<td align="left">2020-06-19</td>
+<td align="left">Ed Humpherson, Office for Statistics Regulation to Neil McIvor, Department for Education</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-neil-mcivor-temporary-exemption-from-code-for-dfe-attendance-statistics/" class="uri">https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-neil-mcivor-temporary-exemption-from-code-for-dfe-attendance-statistics/</a></td>
+</tr>
+<tr class="even">
+<td align="left">Ed Humpherson to Ken Roy: User engagement in the Defra Group</td>
+<td align="left">2020-06-18</td>
+<td align="left">Ed Humpherson, Office for Statistics Regulation to Ken Roy, Department for Environment, Food and Rural Affairs</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-ken-roy-user-engagement-in-the-defra-group/" class="uri">https://www.statisticsauthority.gov.uk/correspondence/ed-humpherson-to-ken-roy-user-engagement-in-the-defra-group/</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Letter from Sir David Norgrove to Richard Holden MP</td>
+<td align="left">2020-06-17</td>
+<td align="left">Sir David Norgrove, UK Statistics Authority to Richard Holden MP, House of Commons</td>
+<td align="left"><a href="https://www.statisticsauthority.gov.uk/correspondence/letter-from-sir-david-norgrove-to-richard-holden-mp/" class="uri">https://www.statisticsauthority.gov.uk/correspondence/letter-from-sir-david-norgrove-to-richard-holden-mp/</a></td>
+</tr>
+</tbody>
+</table>
+<p>Noticing that there have been 9 letters in June 2020 so far, including one today, I wondered if the number of letters was increasing year on year. Of course, as we haven’t finished 2020, we need to adjust the other years to see if this year is on-track to be the year with the most letters.</p>
+<p><img src="/post/2020-06-19-webscraping-public-uksa-letters_files/figure-html/yearly-plot-1.png" width="960" /></p>
+<p>So the answer is <strong>yes</strong>, although this year is looking similar to the last two.</p>
+</div>
+</div>
+<div id="further-analysis" class="section level1">
+<h1><span class="header-section-number">3</span> Further analysis</h1>
+<p>This is quite a fun data set, and there is more that could be done with it. It might be interesting to try natural language processing (NLP) on the information in the titles or entire letter text, or to see how frequently different government departments are involved. A way of identifying whether it was an inbound or outbound letter, which may well be hidden in the webpage somewhere, would be an interesting additional column to the letters dataset.</p>
+<p>As mentioned above, all the code is on <a href="https://github.com/Luke-Shaw/uksa-scrape">GitHub</a> if anyone out there wants to play around further.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">4</span> Conclusion</h1>
+<p>The work the UKSA does is vital in promoting and safeguarding the production and publication of official statistics that ‘serve the public good’. OK, I took most of that last sentence from their website, but I do believe it.</p>
+<p>Through scraping publicly available information, we can see that the UKSA is on track to publish the most letters this year, though the volume is similar to 2018 and 2019.</p>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>UK river flow data</title>
+			<link>/posts/river-flow-data/</link>
+			<pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate>
+			
+			<guid>/posts/river-flow-data/</guid>
+			<description>1 Intro2 Project reflections2.1 Dates dates dates2.2 Data cleaning2.3 More dates2.4 Uncertainty over ‘old’ code3 Trying winfapReader3.1 Set-up and location3.2 Getting POT data3.3 First plot3.4 Consistent time period3.5 When were the most POTs?4 ConclusionIn this post I’m going to try out the recently published winfapReader R package for getting UK river flow data, and think about what I have learnt since my involvement in the project three years ago.</description>
+			<content type="html"><![CDATA[
+
+<div id="TOC">
+<ul>
+<li><a href="#intro"><span class="toc-section-number">1</span> Intro</a></li>
+<li><a href="#project-reflections"><span class="toc-section-number">2</span> Project reflections</a><ul>
+<li><a href="#dates-dates-dates"><span class="toc-section-number">2.1</span> Dates dates dates</a></li>
+<li><a href="#data-cleaning"><span class="toc-section-number">2.2</span> Data cleaning</a></li>
+<li><a href="#more-dates"><span class="toc-section-number">2.3</span> More dates</a></li>
+<li><a href="#uncertainty-over-old-code"><span class="toc-section-number">2.4</span> Uncertainty over ‘old’ code</a></li>
+</ul></li>
+<li><a href="#trying-winfapreader"><span class="toc-section-number">3</span> Trying winfapReader</a><ul>
+<li><a href="#set-up-and-location"><span class="toc-section-number">3.1</span> Set-up and location</a></li>
+<li><a href="#getting-pot-data"><span class="toc-section-number">3.2</span> Getting POT data</a></li>
+<li><a href="#first-plot"><span class="toc-section-number">3.3</span> First plot</a></li>
+<li><a href="#consistent-time-period"><span class="toc-section-number">3.4</span> Consistent time period</a></li>
+<li><a href="#when-were-the-most-pots"><span class="toc-section-number">3.5</span> When were the most POTs?</a></li>
+</ul></li>
+<li><a href="#conclusion"><span class="toc-section-number">4</span> Conclusion</a></li>
+</ul>
+</div>
+
+<p>In this post I’m going to try out the recently published <a href="https://ilapros.github.io/winfapReader/">winfapReader</a> R package for getting UK river flow data, and think about what I have learnt since my involvement in the project three years ago.</p>
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<p>10 days ago, I received a notification for this tweet:</p>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+Four years after the first script my first attempt to a public R package is ready to be tested by others: <a href="https://t.co/kPR2cSDysQ">https://t.co/kPR2cSDysQ</a> is an interface with the <a href="https://twitter.com/UK_NRFA?ref_src=twsrc%5Etfw"><span class="citation">@UK_NRFA</span></a> extreme data locally or via their API. With thanks for the support/code to <a href="https://twitter.com/clavitolo?ref_src=twsrc%5Etfw"><span class="citation">@clavitolo</span></a> <a href="https://twitter.com/mattfry_ceh?ref_src=twsrc%5Etfw"><span class="citation">@mattfry_ceh</span></a> <a href="https://twitter.com/lukefshaw?ref_src=twsrc%5Etfw"><span class="citation">@lukefshaw</span></a>
+</p>
+— Ilaria Prosdocimi (<span class="citation">@ilapros</span>) <a href="https://twitter.com/ilapros/status/1247876020037959681?ref_src=twsrc%5Etfw">April 8, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Dr Ilaria Prosdocimi was my final year project (i.e. dissertation) supervisor at the University of Bath, and I last worked on river flow data about two and a half years ago. The package update was a very pleasant surprise and I am very grateful for being included as a contributor, as well as happy that code I wrote has been useful to somebody else!</p>
+</div>
+<div id="project-reflections" class="section level1">
+<h1><span class="header-section-number">2</span> Project reflections</h1>
+<p>The full pdf of my final report is available <a href="https://lukefshaw.netlify.com/20170508_final_year_project.pdf">here</a>.</p>
+<p>Here are some quick thoughts after re-reading that document for the first time since submission:</p>
+<div id="dates-dates-dates" class="section level2">
+<h2><span class="header-section-number">2.1</span> Dates dates dates</h2>
+<p>I discovered then, and still love now, the <code>lubridate</code> package for <em>anything</em> involving dates.</p>
+</div>
+<div id="data-cleaning" class="section level2">
+<h2><span class="header-section-number">2.2</span> Data cleaning</h2>
+<p>The following sentence rings true for every data project I have worked on since I wrote it three years ago:</p>
+<blockquote>
+<p>I spent at least half of this project cleaning the data</p>
+</blockquote>
+<p>For this project, the data cleaning/validation work even worked its way into the title - “Assessing the reliability of high flows records”.</p>
+</div>
+<div id="more-dates" class="section level2">
+<h2><span class="header-section-number">2.3</span> More dates</h2>
+<ul>
+<li>I’m reminded of the following lyric from the musical RENT:</li>
+</ul>
+<blockquote>
+<p>How do you measure, measure a year</p>
+</blockquote>
+<p>In my current job, the year can start in three different places:</p>
+<ol style="list-style-type: decimal">
+<li>Academic year - Sep - Aug</li>
+<li>Financial year - Apr - Mar</li>
+<li>Calendar year - Jan - Dec</li>
+</ol>
+<p>Re-reading my project made me laugh, as I had forgotten about the ‘Water Year’, which is Oct - Sep. In fact things get even more complicated as the years don’t all change at midnight on the 01st of the month, as the calendar year does. As mentioned above; thank heavens for <code>lubridate</code>!</p>
+</div>
+<div id="uncertainty-over-old-code" class="section level2">
+<h2><span class="header-section-number">2.4</span> Uncertainty over ‘old’ code</h2>
+<p>This is the first time that code I have written is truly public (other than a package which is so specific as to only be of use to one person in the world - whoever is in the job role I was in when I made it). It is somewhat daunting to think code I have written may be used by someone else.</p>
+<p>Looking back now at the code I think how I would do things differently, but realistically I’m not going to go back and re-write things, as that task will always fall towards the bottom of the pile, and the code works, after all. It is a terrible temptation to never put code online for fear it could be better, as it always could be better.</p>
+</div>
+</div>
+<div id="trying-winfapreader" class="section level1">
+<h1><span class="header-section-number">3</span> Trying winfapReader</h1>
+<p>Here is a testcase of winfapReader looking at water gauging stations around Bristol, where I am currently based. I was inspired by <a href="https://www.musclesofquartz.com/post/quick-review-of-winfapreader/">this blog</a> by Sean Turner.</p>
+<div id="set-up-and-location" class="section level2">
+<h2><span class="header-section-number">3.1</span> Set-up and location</h2>
+<pre class="r"><code>library(winfapReader) # new package to be trialled
+library(rnrfa) # NRFA official package
+library(tidyverse) # for data wrangling
+library(knitr) # for table output formatting </code></pre>
+<p>The <code>rnrfa</code> package is on CRAN and useful for finding which gauge stations exist. The NRFA also has a <a href="https://nrfa.ceh.ac.uk/data/search">search tool</a> where you can manually find stations.</p>
+<p>We’ll take the coordinates for the middle of Bristol, and define a bounding box for an area nearby:</p>
+<pre class="r"><code>bbw &lt;- 0.4 #bounding box width
+brist_latlong &lt;- c(51.4545, -2.5879)
+#get Bristol station data
+riv_brist &lt;- rnrfa::catalogue(bbox = list(lat_min = brist_latlong[1]-bbw/2, 
+                                        lat_max = brist_latlong[1]+bbw/2, 
+                                        lon_min = brist_latlong[2]-bbw/2, 
+                                        lon_max = brist_latlong[2]+bbw/2))
+
+#only keep stations with highest quality data. An important step, and as my 
+#final year project can attest there&#39;s lots to think about with data quality!
+riv_brist &lt;- riv_brist %&gt;% filter(`feh-pooling` == TRUE)
+
+knitr::kable(riv_brist %&gt;% select(id, name))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">53004</td>
+<td align="left">Chew at Compton Dando</td>
+</tr>
+<tr class="even">
+<td align="right">53006</td>
+<td align="left">Frome (Bristol) at Frenchay</td>
+</tr>
+<tr class="odd">
+<td align="right">53017</td>
+<td align="left">Boyd at Bitton</td>
+</tr>
+<tr class="even">
+<td align="right">53026</td>
+<td align="left">Frome (Bristol) at Frampton Cotterell</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>rnrfa::catalogue</code> function also returns a wealth of data which I won’t look at here, but just to say there are 101 columns-worth of info per site!</p>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/bristol_gauging_stations.PNG" /></p>
+<p>There are five stations are in the area, and one (id 52015 which is on the left of the image below) is deemed of not good enough quality to use here . So we’re left with four stations, shown in the image. The image is a screen grab from the NRFA <a href="https://nrfa.ceh.ac.uk/data/search">search tool</a>.</p>
+</div>
+<div id="getting-pot-data" class="section level2">
+<h2><span class="header-section-number">3.2</span> Getting POT data</h2>
+<p>The <code>winfapReader</code> package gives access to two sets of data:</p>
+<ol style="list-style-type: decimal">
+<li>Annual Maxima</li>
+<li>Peaks Over the Threshold (POT)</li>
+</ol>
+<p>My project was around the second, so that’s the data I’ll download and look at here. In a sentence:</p>
+<blockquote>
+<p>POT data are the values recorded anytime the river flow exceeds the threshold, set by the NRFA to give an average of between 3 and 5 peaks a year.</p>
+</blockquote>
+<p>Of course there is more information on the NRFA website, and in the project text, if you want to research further. It is interesting data.</p>
+<p>With the <code>winfapReader</code> package, you can connect to NRFA’s API and download the data you want from just inputting the station ID. It outputs the data in a list of three tables, so I’ve made this little wrapper function to pull into a tibble:</p>
+<pre class="r"><code>reshape_pot_list_to_tbl_df &lt;- function(id){
+  ## takes the station id, gets POT data, and reshapes into tbl_df
+  
+  # use winfapReader package to get list
+  pot_list &lt;- winfapReader::get_pot(id)
+  
+  # join two table outputs
+  pot_df &lt;- pot_list$tablePOT %&gt;% 
+    dplyr::left_join(pot_list$WaterYearInfo,by = &#39;WaterYear&#39;) %&gt;%
+    tibble::as_tibble()
+  
+  # add in start and end dates but as NA vals for all other cols
+  # maybe not worth it? Only included so all get_pot info kept
+  start_end_df &lt;- tibble::tibble(Station = id, 
+                                 Date = pot_list$dateRange)
+  pot_df &lt;- pot_df %&gt;% 
+    dplyr::bind_rows(start_end_df) %&gt;%
+    dplyr::arrange(Date)
+    
+  return(pot_df)
+}</code></pre>
+<p>Now we can download POT data in one line (though of course number of lines of code is not a great metric for code quality!):</p>
+<pre class="r"><code># all the heavy lifting happens in this line
+brist_pot_df &lt;- purrr::map_dfr(riv_brist$id, reshape_pot_list_to_tbl_df) 
+# add the name of the station for plotting later
+brist_pot_df &lt;- left_join(brist_pot_df, 
+                          riv_brist %&gt;% select(id, name),
+                          by = c(&quot;Station&quot;=&quot;id&quot;))
+
+# lets see what the data looks like
+str(brist_pot_df)</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    592 obs. of  8 variables:
+##  $ Station        : num  53004 53004 53004 53004 53004 ...
+##  $ Date           : Date, format: &quot;1992-11-29&quot; &quot;1992-11-30&quot; ...
+##  $ WaterYear      : num  NA 1992 1992 1992 1993 ...
+##  $ Flow           : num  NA 30.1 16.8 21 22.3 17.4 16.5 22.3 20.2 15.4 ...
+##  $ Stage          : num  NA 3.87 2.81 3.26 3.39 ...
+##  $ potPercComplete: num  NA 83.6 83.6 83.6 100 ...
+##  $ potThreshold   : num  NA 14.7 14.7 14.7 14.7 ...
+##  $ name           : chr  &quot;Chew at Compton Dando&quot; &quot;Chew at Compton Dando&quot; &quot;Chew at Compton Dando&quot; &quot;Chew at Compton Dando&quot; ...</code></pre>
+</div>
+<div id="first-plot" class="section level2">
+<h2><span class="header-section-number">3.3</span> First plot</h2>
+<p>Here’s an initial plot of the data we’ve got;</p>
+<pre class="r"><code>#only take records above 75% completeness (also removes start/end dates)
+plot_df &lt;- brist_pot_df %&gt;% filter(potPercComplete &gt; 75)
+
+#plots away!
+ggplot(plot_df, aes(x=Date, y = Flow)) +
+  geom_point() +
+  facet_wrap(~name, scales = &quot;free_y&quot;, ncol = 1) +
+  labs(y = &quot;Flow m/s&quot;,
+       title = &quot;POT all events by site&quot;)</code></pre>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/figure-html/plot1-1.png" width="672" /></p>
+<p>A few things spring to mind when looking at this plot:</p>
+<ol style="list-style-type: decimal">
+<li><p>The time period is different for different stations. Frome at Frenchay goes all the way back to the 1960s, whereas Chew at Compton Dando doesn’t start till the 1990s.</p></li>
+<li><p>What happened around 2013? Seem to be lots of peaks?</p></li>
+<li><p>The flow is different at different locations. The river Frome at Frenchay has a greater flow than it does at Frampton Cotterell, and a quick online search shows the Bradley Brook joins the River Frome between the two stations, so an increased flow makes sense. Always good to check the data, and keep the context in mind.</p></li>
+</ol>
+<p>So the initial plotting has given rise to a few interesting questions to be explored further.</p>
+</div>
+<div id="consistent-time-period" class="section level2">
+<h2><span class="header-section-number">3.4</span> Consistent time period</h2>
+<p>To compare across stations, I’ll restrict the time period to when all four have data:</p>
+<pre class="r"><code>valid_dates_df &lt;- brist_pot_df %&gt;% 
+  # the NA potThreshold columns is a proxy for start and end date as 
+  # reshape_pot_list_to_tbl_df joined the list outputs from winfapReader::get_pot()
+  filter(is.na(potThreshold)) %&gt;% 
+  select(Station, Date) %&gt;% 
+  group_by(Station) %&gt;% 
+  summarise(start = min(Date), end = max(Date)) %&gt;%
+  ungroup() %&gt;% pivot_longer(cols = c(&quot;start&quot;,&quot;end&quot;)) %&gt;%
+  # use the in-built Water Year finder function
+  mutate(wy = winfapReader::water_year(value))
+
+#start and end dates for where all stations have data
+start_wy = max(valid_dates_df$wy[valid_dates_df$name == &quot;start&quot;])
+end_wy = min(valid_dates_df$wy[valid_dates_df$name == &quot;end&quot;])
+
+#make a cut version of the data set
+brist_pot_filt_df &lt;- brist_pot_df %&gt;% 
+  filter(WaterYear &gt;= start_wy, WaterYear &lt;= end_wy)</code></pre>
+<p>Re-do our plot to check:</p>
+<pre class="r"><code>ggplot(brist_pot_filt_df %&gt;% filter(!is.na(Date)), aes(x=Date, y = Flow)) +
+  geom_point() +
+  facet_wrap(~name, scales = &quot;free_y&quot;, ncol = 1) +
+  labs(y = &quot;Flow m/s&quot;,
+       title = &quot;POT events by site for when all have data&quot;)</code></pre>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/figure-html/plot2-1.png" width="672" /></p>
+<p>Looks good!</p>
+</div>
+<div id="when-were-the-most-pots" class="section level2">
+<h2><span class="header-section-number">3.5</span> When were the most POTs?</h2>
+<p>If we wanted to know when the highest flow occurred each year, the POT data should not be the first port of call. The Annual Maximum data is for that purpose and, as measurements and calculations can differ, unfortunately it’s not always as simple as taking the max POT value each year. Again, this was a large part of my project…</p>
+<p>POT data has power in the number of peaks over the threshold. Let’s see which water years had the most peaks by site. Will it be the same year for all?</p>
+<pre class="r"><code>#number of POTs each year
+pot_each_year &lt;- brist_pot_df %&gt;%
+  group_by(Station, WaterYear, name) %&gt;%
+  summarise(num_pots = n()) %&gt;%
+  ungroup()
+
+#max pots for each site where they all had data
+max_pots &lt;- pot_each_year %&gt;%
+  filter(WaterYear &gt;= start_wy, WaterYear &lt;= end_wy) %&gt;%
+  group_by(Station) %&gt;%
+  filter(num_pots == max(num_pots)) %&gt;%
+  ungroup()
+
+knitr::kable(max_pots)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Station</th>
+<th align="right">WaterYear</th>
+<th align="left">name</th>
+<th align="right">num_pots</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">53004</td>
+<td align="right">2013</td>
+<td align="left">Chew at Compton Dando</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">53006</td>
+<td align="right">1998</td>
+<td align="left">Frome (Bristol) at Frenchay</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">53017</td>
+<td align="right">2012</td>
+<td align="left">Boyd at Bitton</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">53026</td>
+<td align="right">2012</td>
+<td align="left">Frome (Bristol) at Frampton Cotterell</td>
+<td align="right">9</td>
+</tr>
+</tbody>
+</table>
+<p>Oh, so not all in the same year of 2013. A visualisation will help put these results into context:</p>
+<pre class="r"><code># wrangle the data before plotting
+pot_each_year_filt_max_df &lt;- pot_each_year %&gt;% 
+  filter(WaterYear &gt;= start_wy, WaterYear &lt;= end_wy) %&gt;%
+  # left join onto max_pots and create a column max which says if it was 
+  # a max number of POT that year
+  left_join(max_pots %&gt;% mutate(max=&#39;Yes&#39;) %&gt;% select(Station, WaterYear, max), 
+            by = c(&#39;Station&#39;,&#39;WaterYear&#39;)) %&gt;%
+  mutate(max = ifelse(is.na(max),&#39;No&#39;,max))
+
+ggplot(pot_each_year_filt_max_df, aes(x = WaterYear, y = num_pots, fill=max)) +
+  geom_bar(stat=&#39;identity&#39;) +
+  facet_wrap(~name, ncol = 1) +
+  labs(y = &quot;Number of POTs&quot;, title = &quot;Number of POTs each Water Year by site&quot;)</code></pre>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/figure-html/pots-each-year-plot-1.png" width="672" /></p>
+<p>An interesting visualisation! Maybe not quite what we were expecting, but again it invites further questions about the data. Clearly only two sites (Boyd at Bitton and Frome at Frenchay) had most POTs in the same year - the 2012 Water Year. There was also lots of POTs in 1998, the most for Frome at Frenchay and second or third most for the other three sites.</p>
+<p>This data is of course very rich - there’s more we could look at. Such as:</p>
+<ul>
+<li>individual dates</li>
+<li>time of year</li>
+<li>follow water flow down a river system (as opposed to picking an area)</li>
+</ul>
+<p>and much else too! That’s enough for me for today, though.</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">4</span> Conclusion</h1>
+<p>The <code>winfapReader</code> package is very cool, and very powerful when combined with the <code>rnrfa</code> one. I only looked at a specific area, and it was quick to get the data I wanted.</p>
+<p>Thank you Dr Ilaria Proscdocimi. I am flattered to be included as a contributor to this work.</p>
+<p>Thank you also to my father, who proofread this blog and made all the words nicerer.</p>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Identifying differences in data sets</title>
+			<link>/posts/identifying-differences-in-data-sets/</link>
+			<pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+			
+			<guid>/posts/identifying-differences-in-data-sets/</guid>
+			<description>IntroOften in my work I end up asking the following question:
+We have just run the same process X days apart - are the results the same?
+This could be for taking routine data cuts from a live system, to fitting models, to a cleaning process. Sadly the second option, which is the most fun, is the least common.
+I’ve learnt some methods for carrying out this process routinely, though I still have lots to learn.</description>
+			<content type="html"><![CDATA[
+
+
+<div id="intro" class="section level1">
+<h1>Intro</h1>
+<p>Often in my work I end up asking the following question:</p>
+<blockquote>
+<p>We have just run the same process X days apart - are the results the same?</p>
+</blockquote>
+<p>This could be for taking routine data cuts from a live system, to fitting models, to a cleaning process. Sadly the second option, which is the most fun, is the least common.</p>
+<p>I’ve learnt some methods for carrying out this process routinely, though I still have lots to learn. This post documents some of the tricks I’ve learnt. Mostly it’s in R, though there is some Excel too.</p>
+</div>
+<div id="are-they-identical-check-with-all_equal" class="section level1">
+<h1>1. Are they identical? Check with all_equal</h1>
+<p>If the data sets are in fact the same, hooray! There’s a quick check for that using <code>all_equal</code>:</p>
+<pre class="r"><code>#test data sets
+first_df &lt;- tibble::tibble(col1 = 1:4, col2 = letters[1:4], col3 = LETTERS[1:4])
+second_df &lt;- first_df
+
+#the all_equal function is a great first step
+dplyr::all_equal(first_df, second_df)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>As an aside, if you’ve not seen the <code>::</code> notation before, <code>x::y</code> means from package <code>x</code> get function <code>y</code>. This may seem pedantic, but is best practice and after seeing that the <code>filter</code> function means a different thing if you’re using tidyverse or just in Base R - I’m trying to do my best to always use the notation.</p>
+<p>The <code>all_equal</code> function ignores row and column order by default, which is a <strong>good</strong> thing as that shouldn’t matter for our data sets.</p>
+<p>When it fails, though, I don’t find it that useful as it tells you the rows that aren’t the same but nothing further.</p>
+</div>
+<div id="whats-different-the-comparedf-package" class="section level1">
+<h1>2. What’s different? The compareDF package</h1>
+<p>The compareDF package is cool for showing you nicely where the differences lie in your data sets. This <a href="https://www.r-bloggers.com/comparing-dataframes-in-r-using-comparedf/">r-bloggers post</a> does a much better job than I will here.</p>
+<pre class="r"><code>#make data sets different
+second_df$col3[2] = &quot;z&quot;
+
+#the all_equal function isn&#39;t that helpful -
+#imagine if we had hundreds or more rows
+dplyr::all_equal(first_df, second_df)</code></pre>
+<pre><code>## [1] &quot;Rows in x but not y: 2. Rows in y but not x: 2. &quot;</code></pre>
+<pre class="r"><code>#enter compareDF. The group_col is the way of matching the rows for the data
+library(compareDF)
+ctable &lt;- compareDF::compare_df(first_df,second_df, group_col = &quot;col1&quot;)</code></pre>
+<pre><code>## Creating comparison table...</code></pre>
+<pre class="r"><code>#you can quickly get a feel for how different the data sets are
+ctable$change_summary</code></pre>
+<pre><code>##   old_obs   new_obs   changes additions  removals 
+##         4         4         1         0         0</code></pre>
+<pre class="r"><code>#and there are some really other neat tools - like this one showing 
+#the row from each data set next to each other showing the difference 
+#(its in col3)
+ctable$comparison_df</code></pre>
+<pre><code>##   col1 chng_type col2 col3
+## 1    2         +    b    B
+## 2    2         -    b    z</code></pre>
+<p>A nice thing about the <code>compareDF</code> package is you immediately get a sense of how different the data sets are, or as it usually feels at work; “how big is the problem?”.</p>
+</div>
+<div id="still-confused-open-excel" class="section level1">
+<h1>3. Still confused? Open Excel</h1>
+<p>This brings me to a potential sore point - taking a look in Excel. Even if the process is entirely built in R, I still find it useful to root around in an Excel file identifying data set differences.</p>
+<p>I used to use Excel from the get-go, which I maintain is not best practice. Excel work is not reproducible, and I have lost <strong>days</strong> trying to work out how someone did the manual Excel task before me. Did they delete columns? Change the date type? Drag the formula down? Who knows.</p>
+<p>The scenario I am talking about is when there is a specific example and I need to know I understand, for myself, where the two data sets are different - to understand if it’s a problem or not. It’s easier to see data in Excel than in R.</p>
+<p>Excel has some nice point-and-click options like ‘remove duplicates’ and ‘conditional formatting’, but it’s a slow task doing that from the beginning. Instead, my process is now the following:</p>
+<ol style="list-style-type: decimal">
+<li>If I’m expecting the data sets to be identical - try <code>all_equal</code></li>
+<li>If they’re not, use the <code>compareDF</code> package</li>
+<li>If the differences are large and I can’t explain it after 5 mins in R, save the files to Excel. This includes some of the nice outputs from <code>compare_df</code>. I then root around the file trying to work out why these flipping data sets are different</li>
+<li>(often) Sheepishly realise I changed the code and that explains the difference.</li>
+</ol>
+</div>
+<div id="catch-the-problem-early---assertr" class="section level1">
+<h1>Catch the problem early - assertr</h1>
+<p>I have recently started adding sprinkles of <a href="https://github.com/ropensci/assertr"><code>assertr</code></a> to my code. Again, <a href="https://cran.r-project.org/web/packages/assertr/vignettes/assertr.html">this vignette</a> explains it far more thoroughly than I do here.</p>
+<p>What the <code>assertr</code> package allows is for a load of sense checks on the data, such as “are all values positive?” or “are there enough rows for this to be the right data set?”. If the checks fail, the process is stopped before the damage is done in the analysis/wrangling, by which point the original issue is obscured.</p>
+<pre class="r"><code>library(assertr)
+second_df %&gt;%
+  assertr::verify(col1 &gt; 0) %&gt;%
+  assertr::verify(nrow(.)&gt;3) %&gt;%
+  #check column 3 only contains capital letters
+  assertr::assert(in_set(LETTERS), col3)</code></pre>
+<pre><code>## Column &#39;col3&#39; violates assertion &#39;in_set(LETTERS)&#39; 1 time
+##     verb redux_fn       predicate column index value
+## 1 assert       NA in_set(LETTERS)   col3     2     z
+## 
+## &lt;simpleError: assertr stopped execution&gt;</code></pre>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>There are many ways of finding out where the differences are in the data sets, which is a common task in my work. I still have lots to learn, but the above show some R tools I find useful when trying to identify the inconsistencies.</p>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Asking Stack Overflow</title>
+			<link>/posts/stack_overflow/</link>
+			<pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+			
+			<guid>/posts/stack_overflow/</guid>
+			<description>1 IntroStack Overflow is known for being the site you inevitably arrive at when googling a coding question, and I have been passively using it for over 5 years. It’s an invaluable tool when trying to debug code and understand error messages.
+The basic idea is that someone has probably got stuck in the same place as you before, and if they asked on Stack Overflow there is then a searchable solution ready and waiting online, as members of the community can post answers.</description>
+			<content type="html"><![CDATA[
+
+
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<p><a href="https://stackoverflow.com/">Stack Overflow</a> is known for being the site you inevitably arrive at when googling a coding question, and I have been passively using it for over 5 years. It’s an invaluable tool when trying to debug code and understand error messages.</p>
+<p>The basic idea is that someone has probably got stuck in the same place as you before, and if they asked on Stack Overflow there is then a searchable solution ready and waiting online, as members of the community can post answers.</p>
+</div>
+<div id="my-first-question" class="section level1">
+<h1><span class="header-section-number">2</span> My First Question</h1>
+<p>Recently, I have been coding in Microsoft’s flavour of SQL. It has been over a year since I was last using it, and I started getting frustrated when a join wasn’t working as planned. I was ready to jump ship and wrangle the data in R instead, but that wasn’t really the right solution as it would be complicating the matter if a colleague came to run the code.</p>
+<p>After not being able to google my way to a solution, I took a deep breath and posted <a href="https://stackoverflow.com/questions/59066778/t-sql-choosing-single-row-dependent-on-column-condition-and-frequency-in-table">my first question</a> onto Stack Overflow:</p>
+<p><img src="/post/stack_overflow_files/stack_overflow_question.PNG" /></p>
+</div>
+<div id="the-response" class="section level1">
+<h1><span class="header-section-number">3</span> The Response</h1>
+<ul>
+<li><p>Within a minute, I had a (potentially automated) question asking what I had tried already. I updated my question accordingly.</p></li>
+<li><p>Within 10 minutes, someone posted a solution. This solution pointed out an incompleteness in my toy example. I updated my question accordingly.</p></li>
+<li><p>Within 2 hours, and a few conversation threads, 3 solutions had been posted. There was one I preferred, but all answered the question as I had posed it.</p></li>
+</ul>
+<p>I was impressed by two things in my response:</p>
+<blockquote>
+<p>Everyone was respectful.</p>
+</blockquote>
+<p>This is surprising as it is, after all, the internet.</p>
+<blockquote>
+<p>People wanted to help.</p>
+</blockquote>
+<p>Yes there may be incentives within the points structure of the site, but these were friendly experts giving me a free helping hand.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">4</span> Conclusion</h1>
+<p>I do not usually post on the internet, for fear of a negative experience. However, this first posting on Stack Overflow was an entirely positive experience. Who knows, one day I may even be posting solutions on the site…</p>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>&#34;The flying bomb and the actuary&#34;: supplementary analysis</title>
+			<link>/posts/bomb_blog_liam/</link>
+			<pubDate>Fri, 04 Oct 2019 00:00:00 +0000</pubDate>
+			
+			<guid>/posts/bomb_blog_liam/</guid>
+			<description>1 About2 Data import and clean3 Replicating Clarke3.1 The Grid3.2 Mirroring Clarke, with a chi-squared warning?3.3 Copying Clarke exactly3.4 … Is there a mistake?4 “Spherical Clarke” - Random Sampling4.1 A border for our data4.2 Creating the simulation4.3 Perform the test4.4 P-hackers?5 Bomb Density6 Conclusions7 References1 AboutThis is a supplementary analysis file for the article “The flying bomb and the actuary” published in Significance (October 2019).</description>
+			<content type="html"><![CDATA[
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#about"><span class="toc-section-number">1</span> About</a></li>
+<li><a href="#data-import-and-clean"><span class="toc-section-number">2</span> Data import and clean</a></li>
+<li><a href="#replicating-clarke"><span class="toc-section-number">3</span> Replicating Clarke</a><ul>
+<li><a href="#the-grid"><span class="toc-section-number">3.1</span> The Grid</a></li>
+<li><a href="#mirroring-clarke-with-a-chi-squared-warning"><span class="toc-section-number">3.2</span> Mirroring Clarke, with a chi-squared warning?</a></li>
+<li><a href="#copying-clarke-exactly"><span class="toc-section-number">3.3</span> Copying Clarke exactly</a></li>
+<li><a href="#is-there-a-mistake"><span class="toc-section-number">3.4</span> … Is there a mistake?</a></li>
+</ul></li>
+<li><a href="#spherical-clarke---random-sampling"><span class="toc-section-number">4</span> “Spherical Clarke” - Random Sampling</a><ul>
+<li><a href="#a-border-for-our-data"><span class="toc-section-number">4.1</span> A border for our data</a></li>
+<li><a href="#creating-the-simulation"><span class="toc-section-number">4.2</span> Creating the simulation</a></li>
+<li><a href="#perform-the-test"><span class="toc-section-number">4.3</span> Perform the test</a></li>
+<li><a href="#p-hackers"><span class="toc-section-number">4.4</span> P-hackers?</a></li>
+</ul></li>
+<li><a href="#bomb-density"><span class="toc-section-number">5</span> Bomb Density</a></li>
+<li><a href="#conclusions"><span class="toc-section-number">6</span> Conclusions</a></li>
+<li><a href="#references"><span class="toc-section-number">7</span> References</a></li>
+</ul>
+</div>
+
+<div id="about" class="section level1">
+<h1><span class="header-section-number">1</span> About</h1>
+<p>This is a supplementary analysis file for the article “<a href="https://doi.org/10.1111/j.1740-9713.2019.01315.x">The flying bomb and the actuary</a>” published in <em>Significance</em> (October 2019).</p>
+<p>The Significance article tells the story of our attempt to recreate a <a href="https://www.cambridge.org/core/journals/journal-of-the-institute-of-actuaries/article/an-application-of-the-poisson-distribution/F75111847FDA534103BD4941BD96A78E">paper</a> by R. D. Clarke from 1946 showing that V-1s falling on London followed a Poisson distribution. The article details the data cleaning and analysis we carried out in R on a dataset of <a href="https://www.google.com/maps/d/viewer?mid=1VwyxV_e_LAwzbyJPCAF-C7aCRVNA5W7N&amp;ll=51.509018493447314%2C-0.0532458896298067&amp;z=14">V-1 and V-2 impacts on London</a>, compiled from photographs of the original London County Council bomb damage maps <a href="https://www.amazon.co.uk/London-County-Council-Damage-1939-1945/dp/0500518254/">published</a> by the London Metropolitan Archives. For more information on the <a href="https://en.wikipedia.org/wiki/V-1_flying_bomb">V-1</a> and <a href="https://en.wikipedia.org/wiki/V-2_rocket">V-2</a> bombs, see Wikipedia.</p>
+<p>The purpose of this document is:</p>
+<ol style="list-style-type: decimal">
+<li>to reproduce the analysis covered in the article.</li>
+<li>to act as a guide for those looking to do further exploration of the dataset.</li>
+</ol>
+<p>Disclaimers:</p>
+<ul>
+<li>We are not experts in spatial statistics, so this is quite a basic analysis.</li>
+<li>There may be mistakes, as this document is deliberately a “show your working”. Constructive criticism is very welcome!</li>
+<li>Code: in general, we have used the <a href="https://www.tidyverse.org">tidyverse</a> i.e. the preferred format for data is a tibble. However, there is no enforcement of tidyverse rules and the code sometimes switches to base R when it seems most convenient.</li>
+</ul>
+<p>Please feel free to get in touch with errors/comments/questions: you can email us at <em>liam [dot] philip [dot] shaw [at] gmail.com</em> and <em>luke [dot] francis [dot] shaw [at] gmail.com</em>. We are also (<a href="https://twitter.com/liampshaw">Liam</a>, <a href="https://twitter.com/lukefshaw">Luke</a>) on Twitter.</p>
+</div>
+<div id="data-import-and-clean" class="section level1">
+<h1><span class="header-section-number">2</span> Data import and clean</h1>
+<p>All packages required:</p>
+<pre class="r"><code>library(rgdal)
+library(ggforce)
+library(tidyverse)
+library(geosphere)
+library(remotes)
+remotes::install_github(&quot;geotheory/londonShapefiles&quot;)</code></pre>
+<pre><code>## * checking for file &#39;C:\Users\Luke\AppData\Local\Temp\Rtmpk9rQqK\remotes2584790d27ca\geotheory-londonShapefiles-7938344/DESCRIPTION&#39; ... OK
+## * preparing &#39;londonShapefiles&#39;:
+## * checking DESCRIPTION meta-information ... OK
+## * checking for LF line-endings in source and make files and shell scripts
+## * checking for empty or unneeded directories
+## * building &#39;londonShapefiles_1.0.tar.gz&#39;</code></pre>
+<pre class="r"><code>library(maptools)
+library(concaveman)
+library(mclust)
+library(DT)</code></pre>
+<p>First we read in the data. The file “bomb_map.kml” is the downloaded file from the Google Maps <a href="https://www.google.com/maps/d/viewer?mid=1VwyxV_e_LAwzbyJPCAF-C7aCRVNA5W7N&amp;ll=51.509018493447314%2C-0.0532458896298067&amp;z=14">layer</a> with the impacts, stored in the appropriate directory. There may be a nifty way to directly read from the url directly.</p>
+<pre class="r"><code>vones = readOGR(dsn = &quot;bomb_map.kml&quot;, layer = &quot;V1&quot;)
+vones = as_tibble(vones)
+#give sensible column names
+colnames(vones)[colnames(vones)==&quot;coords.x1&quot;] &lt;- &quot;long&quot;
+colnames(vones)[colnames(vones)==&quot;coords.x2&quot;] &lt;- &quot;lat&quot;</code></pre>
+<p>The analysis we are doing focuses on the distance between points. Latitude and longitude are <a href="https://en.wikipedia.org/wiki/Longitude#Length_of_a_degree_of_longitude">not ideal</a> for this, as they represent angles. Moving one degree in a direction can result in a great deal more movement than in another, depending on the location on the Earth’s surface. Instead, we need a spatial reference system. We chose to convert to the Ordnance Survey standard <a href="https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid">British National Grid</a>, in which the Eastings and Northings have units in metres. This means we can use traditional euclidean geometry to estimate distance between points. We found the code to do this <a href="http://rstudio-pubs-static.s3.amazonaws.com/19879_7e13ab80d5ed416c8e235bd6bb93cf3e.html">here</a>.</p>
+<pre class="r"><code>#initially in latitude, longitude
+cord.dec = SpatialPoints(cbind(vones$long, vones$lat), proj4string=CRS(&quot;+proj=longlat&quot;))
+#UK epsg https://spatialreference.org/ref/epsg/osgb-1936-british-national-grid/
+cord.UTM &lt;- sp::spTransform(cord.dec, CRS(&quot;+init=epsg:27700&quot;))
+#add BNG to vones dataset
+vones$easting = cord.UTM$coords.x1
+vones$northing = cord.UTM$coords.x2
+#tidy up
+vones = dplyr::select(vones,c(&quot;Description&quot;, &quot;easting&quot;,&quot;northing&quot;))</code></pre>
+<p>For plotting, we want something to give an impression of location within London. We could use rasters and maps, but the simplest solution is to include the River Thames (as anybody who’s seen <a href="https://en.wikipedia.org/wiki/EastEnders">Eastenders</a> will know). Thanks to <a href="https://github.com/geotheory/londonShapefiles">geotheory</a> for the shapefile!</p>
+<pre class="r"><code>londonShapefiles::load_thames()  # River Thames
+#strip away all but essential info - our plotting needs are simple
+thames_line = thames@polygons[[1]]@Polygons[[1]]@coords
+thames_line = thames_line %&gt;%
+  tibble::as_tibble() %&gt;%
+  dplyr::rename(easting=V1,northing=V2) %&gt;%
+  dplyr::filter(easting&gt;520000,easting&lt;550000)</code></pre>
+<p>Now we can create an initial plot with the V-1 bomb locations and the Thames.</p>
+<pre class="r"><code>base_plot = ggplot(data=vones, aes(x=easting, y=northing)) + 
+  coord_fixed() + 
+  theme_bw() + 
+  geom_point() + 
+  geom_polygon(data=thames_line, alpha=1, aes(col = 2, fill = 2)) +
+  theme(legend.position = &quot;none&quot;)
+base_plot</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/init_plot-1.png" width="672" /></p>
+</div>
+<div id="replicating-clarke" class="section level1">
+<h1><span class="header-section-number">3</span> Replicating Clarke</h1>
+<div id="the-grid" class="section level2">
+<h2><span class="header-section-number">3.1</span> The Grid</h2>
+<p>Clarke is not specific about the exact location of his grid that he chose. Here the things we knew about the area:</p>
+<ol style="list-style-type: decimal">
+<li>Made of 576 squares, each with width 0.25km<span class="math inline">\(^2\)</span></li>
+<li>537 V-1 bombs fallen inside it</li>
+<li>In “south London”</li>
+<li>(probably) follows BNG lines, as Clarke would have been using standard British maps</li>
+</ol>
+<p>We’re not sure whether the London County Council maps contain the whole area that Clarke used. So we choose a reasonable area that contains 532 V-1s (not 576) and fitted all the other criteria.</p>
+<pre class="r"><code>#The boundaries were chosen to have same dimensions a clarke and to 
+#have roughly the same number of bombs in
+xmin = 525000
+xmax = 543000
+ymin = 172000
+ymax = 180000
+base_plot+geom_rect(xmin=xmin, xmax=xmax, 
+                    ymin=ymin, ymax=ymax,
+                    alpha=0.1, fill=NA, colour=&quot;red&quot;, size=0.5)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/clarke_v1-1.png" width="672" /></p>
+<p>Now we have the grid, we can replicate the analysis to get the same contingency table as Clarke.</p>
+</div>
+<div id="mirroring-clarke-with-a-chi-squared-warning" class="section level2">
+<h2><span class="header-section-number">3.2</span> Mirroring Clarke, with a chi-squared warning?</h2>
+<pre class="r"><code>#cutout just the bombs inside the rectangle
+vones_region &lt;- vones[which(vones$easting&gt;xmin &amp; vones$easting&lt;xmax &amp;
+                              vones$northing&gt;ymin &amp; vones$northing&lt;ymax),]
+
+# Table up the counts
+step = 500
+nrow_x = (xmax-xmin)/step
+ncol_y = (ymax-ymin)/step
+total_squares &lt;- (nrow_x * ncol_y)
+hits_matrix &lt;- matrix(nrow = nrow_x, ncol=ncol_y)
+for (i in seq(1, nrow_x)){
+  for (j in seq(1, ncol_y)){
+    hits_matrix[i, j] &lt;- nrow(vones_region[which(vones_region$easting&gt;xmin+step*(i-1) &amp;
+                                                   vones_region$easting&lt;xmin+step*i &amp;
+                                                   vones_region$northing&gt;ymin+step*(j-1) &amp;
+                                                   vones_region$northing&lt;ymin+step*j),]) 
+  }
+}
+# Lambda
+lambda &lt;- nrow(vones_region) / total_squares
+
+# Replicate Clarke
+comparison_df &lt;- data.frame(num_bombs_per_square = 0:4,
+                            poisson = sapply(seq(0, 4), 
+                                             function(x) dpois(x, lambda)*total_squares),
+                            actual = as.numeric(table(hits_matrix)[1:5]))
+comparison_df &lt;- rbind(comparison_df,
+                       data.frame(num_bombs_per_square = &quot;5 and over&quot;, 
+                                  poisson = 576-sum(comparison_df$poisson),
+                                  actual = as.numeric(table(hits_matrix))[6]))
+# Chi-squared test
+chisq.test(comparison_df[c(&#39;poisson&#39;,&#39;actual&#39;)])</code></pre>
+<pre><code>## Warning in chisq.test(comparison_df[c(&quot;poisson&quot;, &quot;actual&quot;)]): Chi-squared
+## approximation may be incorrect</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  comparison_df[c(&quot;poisson&quot;, &quot;actual&quot;)]
+## X-squared = 3.0572, df = 5, p-value = 0.6912</code></pre>
+<p>Hold on a second, what’s that error: <em>“Chi-squared approximation may be incorrect”</em>?</p>
+<p>It turns out it’s because we have small categories, namely the “5 and over” row. One change could be to simulate the values instead (the function has a “simulate.p.value” parameter), but this will still be inconsistent due to the small numbers in the table. All that matters for the narrative is that the p-value is always large, which shows the columns are similar and hence we have no reason to reject the hypothesis that the bombs fell at random in the area chosen. But as a statistician this is still unsatisfying.</p>
+</div>
+<div id="copying-clarke-exactly" class="section level2">
+<h2><span class="header-section-number">3.3</span> Copying Clarke exactly</h2>
+<p>Clarke quotes some of his intermediate results in <a href="https://www.cambridge.org/core/journals/journal-of-the-institute-of-actuaries/article/an-application-of-the-poisson-distribution/F75111847FDA534103BD4941BD96A78E">his paper</a>:</p>
+<blockquote>
+<p>Applying the <span class="math inline">\(\chi^2\)</span> test the comparison of actual with expected figures, we obtain <span class="math inline">\(\chi^2 = 1.17\)</span>. There are 4 degrees of freedom, and the probability of observing this or a higher value of <span class="math inline">\(\chi^2\)</span> is .88</p>
+</blockquote>
+<pre class="r"><code>#numbers from his paper
+clarke_df = data.frame(num_bombs_per_square = 0:4,
+                       poisson = 576*dpois(x=0:4, lambda = 537/576),
+                       actual = c(229,211,93,35,7))
+clarke_df = rbind(clarke_df, 
+                  data.frame(num_bombs_per_square = 5,
+                             poisson = 576-sum(clarke_df$poisson),
+                             actual = 1))
+#doing step-by-step
+clarke_df$test_stat_components = (clarke_df$actual - clarke_df$poisson)^2 / clarke_df$poisson
+clarke_test_stat = sum(clarke_df$test_stat_components) #1.17
+clarkes_pvalue = pchisq(clarke_test_stat, df = 4, lower.tail=FALSE)
+print(paste(&#39;We recreate Clarke\&#39;s p-value as &#39;, clarkes_pvalue, &#39;(he says .88)&#39;))</code></pre>
+<pre><code>## [1] &quot;We recreate Clarke&#39;s p-value as  0.883150518919159 (he says .88)&quot;</code></pre>
+</div>
+<div id="is-there-a-mistake" class="section level2">
+<h2><span class="header-section-number">3.4</span> … Is there a mistake?</h2>
+<p>We get the same warning as previously when using his table (not shown). So we can replicate Clarke’s example, but…you may be wondering, shouldn’t there be 5 degrees of freedom, not 4? When first shown the chi-squared test you learn the rule that the degrees of freedom is <span class="math inline">\((number\ of\ rows\ - 1) * (number\ of\ columns - 1)\)</span> which here is <span class="math inline">\((6-1)*(2-1)\)</span> = 5. Thinking in terms of what “degrees of freedom” means, this makes sense: when you get to the last row the numbers are fixed as we know both columns add to 256.</p>
+<p>So did Clarke get it wrong? We were pretty certain the answer was “yes”, as this blog and the main article initially claimed. But the real answer is “no”, and we are thankful to Erik Holst for this correction. The reason 4 degrees of freedom is correct is that a parameter had been estimated during the table creation - the lambda value used in the calculation of the expected number of squares. Thus we have lost another degree of freedom: <span class="math inline">\(6 - 1 - 1 = 4\)</span>.</p>
+<p>Whatever permutation of the degrees of freedom and method we use, the p-value is always large, so the narrative is untouched. The distribution of V-1 impacts is well-described by a Poisson distribution.</p>
+</div>
+</div>
+<div id="spherical-clarke---random-sampling" class="section level1">
+<h1><span class="header-section-number">4</span> “Spherical Clarke” - Random Sampling</h1>
+<p>We had the idea of using a more modern technique: randomly sampling a point and counted the bombs within a certain distance from it. Whereas Clarke dealt with a grid of squares, this techniques means dealing with circles (defined by a point and a radius).</p>
+<p>To get a comparable lambda estimate to Clarke’s <span class="math inline">\(537/576 \approx 0.93\)</span>, we need to use the same area. Clarke’s estimate is the number of bombs falling in a 0.25km square. To map this to circles and find the radius we need to only use our trusty circle area formula <span class="math inline">\(area = \pi r^2\)</span>. Note how tricky this would be to do in latitude/longitude coordinates, however, in BNG easting/northing the units are metres so we can easily calculate our necessary radius:</p>
+<p><span class="math display">\[r = \sqrt{500^2 / \pi} = \sqrt{250000 / \pi} = 282.094... \approx 282m\]</span></p>
+<p>Now we have our circle radius we can copy Clarke’s methodology using circles instead of squares. We can also re-sample from circles already covered, sampling with replacement. Clarke was limited by physical map paper, but we can simulate as many times as we want!</p>
+<p>Simulation approach:</p>
+<ol style="list-style-type: decimal">
+<li>n times:
+<ul>
+<li>randomly pick a location (x,y)</li>
+<li>count the number of bombs that landed within the circle with centre (x,y) and area 0.25km^2</li>
+</ul></li>
+<li>calculate the rate of bomb hits (our lambda estimate in Poisson terms)</li>
+</ol>
+<p>This is a simple form of bootstrapping. Some further work could be to bootstrap to find the standard error in our final lambda estimate, as described by Jodie Burchell <a href="http://t-redactyl.io/blog/2015/09/a-gentle-introduction-to-bootstrapping.html">here</a>.</p>
+<div id="a-border-for-our-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> A border for our data</h2>
+<p>We have the issue of not easily knowing the exact border of our data. We know that V-1 bombs fell outside of the data we have, as our data is only for the area is the County of London, which no longer exists. Because this area was in use over 70 years ago we couldn’t easily find a ready-made shapefile online!</p>
+<p>A fix is to look at creating a hull, which is a polygon that covers our set of points. We can have: a convex hull, which is too bloated; a concave hull, which is too jagged; or a 'Goldilocks hull', which is 'just right' (sorry…).</p>
+<pre class="r"><code>#most simple hull - a rectangle defined by furthest bomb points 
+min_e = min(vones$easting)
+max_e = max(vones$easting)
+min_n = min(vones$northing)
+max_n = max(vones$northing)
+rectangle = tibble(easting =  c(min_e, min_e, max_e, max_e, min_e),
+                   northing = c(min_n, max_n, max_n, min_n, min_n))
+
+#convex (bloated) hull
+convex = concaveman::concaveman(cbind(vones$easting, vones$northing), concavity = 10000)
+convex = convex %&gt;% as_tibble() %&gt;% rename(easting=V1,northing=V2)
+
+#concave (tight) hull
+concave = concaveman::concaveman(cbind(vones$easting, vones$northing), concavity = 1)
+concave = concave %&gt;% as_tibble() %&gt;% rename(easting=V1,northing=V2)
+
+#conmid (goldilocks) hull
+conmid = concaveman::concaveman(cbind(vones$easting, vones$northing), concavity = 2)
+conmid = conmid %&gt;% as_tibble() %&gt;% rename(easting=V1,northing=V2)
+
+hulls = rbind(cbind(rectangle, type=&quot;rectangle&quot;),
+              cbind(convex,type=&quot;convex&quot;),
+              cbind(concave,type=&quot;concave&quot;),
+              cbind(conmid,type=&quot;goldilocks&quot;))
+hulls = mutate(hulls, type = as.character(type))
+hulls = as_tibble(hulls)
+
+#why doesn&#39;t this work?
+#base_plot + geom_path(data = hulls, aes(colour=type))
+
+hulls_plot = ggplot(vones, aes(x=easting, y=northing)) + 
+  geom_point() +
+  geom_path(data = hulls, aes(colour=type)) +
+  theme_bw() +
+  ggtitle(&#39;Candidate hulls for our boundary&#39;)
+hulls_plot</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/hull-1.png" width="672" /></p>
+<p>If we pick a hull that’s too <em>large</em>, we expect <em>underestimate</em> the bomb rate as we’ll have more arbitrary zeros, and if we pick a hull that is too <em>small</em> the reverse will happen.</p>
+<pre class="r"><code>vone_boundary_plot = ggplot(data=vones, aes(x=easting, y=northing)) + 
+  coord_fixed() + 
+  theme_bw() +
+  theme(panel.grid = element_blank()) + 
+  geom_polygon(data=thames_line, alpha=1, aes(col = 2, fill = 2)) +
+  geom_path(data = hulls %&gt;% filter(type==&#39;goldilocks&#39;), colour=&#39;darkgrey&#39;, size = 2) +
+  geom_point() + 
+  theme(legend.position = &quot;none&quot;) +
+  ggtitle(&#39;\&quot;conmid\&quot; (goldilocks) is chosen as the preferred boundary&#39;)
+vone_boundary_plot</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/conmid-plot-bombs-1.png" width="672" /></p>
+</div>
+<div id="creating-the-simulation" class="section level2">
+<h2><span class="header-section-number">4.2</span> Creating the simulation</h2>
+<p>Our simulation approach now has a vital new step:</p>
+<ol style="list-style-type: decimal">
+<li>n times:
+<ul>
+<li>randomly pick a location (x,y)</li>
+<li><em>check the circle of area <span class="math inline">\(0.25km^2\)</span> centre (x,y) is inside the hull</em>. If not, try again</li>
+<li>count the number of bombs that landed within the circle with centre (x,y) and area <span class="math inline">\(0.25km^2\)</span></li>
+</ul></li>
+<li>calculate the rate of bomb hits (our lambda estimate in Poisson terms)</li>
+</ol>
+<p>We need a few sub-functions for this process:</p>
+<pre class="r"><code>###Function for checking the circle is in the hull:
+
+circle_inside_hullEN = function(centre, radius, hull){
+  #given the centre and radius of a circle, output TRUE if the circle 
+  #is entirely inside the hull, and FALSE if not
+  if(!identical(names(centre),c(&quot;easting&quot;, &quot;northing&quot;))){
+    stop(&quot;centre names must be c(\&quot;easting\&quot;,  \&quot;northing\&quot;) in that order&quot;)
+  }
+  
+  #take 360 points on the circle, then we&#39;ll individually check if inside the hull
+  circle_points = tibble::tibble(easting = centre[1] + radius * cos(1:360),
+                                 northing = centre[2] + radius * sin(1:360))
+  inside = sp::point.in.polygon(point.x = circle_points$easting, 
+                                point.y = circle_points$northing,
+                                pol.x = hull$easting, pol.y = hull$northing)
+  return(all(inside!=0))
+}
+
+###Function for counting the number of bombs inside the circle:
+
+count_hitsEN &lt;- function(data, radius, centre){
+  # function to check if a point is inside the circle, in Easting / Northing defn
+  if(centre[1] &lt; 500000 | centre[2] &gt; 190000){
+    stop(&quot;centre not in format (easting,northing)&quot;)
+  }
+  #function to return TRUE/FALSE for statement &quot;point is inside circle&quot;
+  inside = function(easting, northing){
+    return( (easting-centre[1])^2 + (northing-centre[2])^2 &lt; radius^2 )
+  }
+  # run on all bombs
+  bomb_count &lt;- data %&gt;% 
+    as_tibble() %&gt;% 
+    mutate(inside=inside(easting, northing)) %&gt;%
+    filter(inside==TRUE) %&gt;%
+    count()
+  return(bomb_count$n)
+}
+
+###Function for sampling circles and counting the number of bombs within them:
+
+sample_n_circles = function(data=vones, 
+                            n = 1000,
+                            hull = conmid, 
+                            r = sqrt(500^2 / pi),
+                            max_attempts = 10000,
+                            seed=1729){
+  #Sampling the number of points within n random circles radius r that are 
+  #inside the hull
+  
+  num_outside_hull = 0 #for keeping track of bad circles
+  set.seed(seed)
+
+  #initialise our output data set
+  valid_centres &lt;- as_tibble(data.frame(matrix(nrow=0,ncol=3)))
+  colnames(valid_centres) &lt;- c(&quot;easting&quot;, &quot;northing&quot;, &quot;num_bombs&quot;)
+  
+  #loop through
+  i = 1
+  while(i &lt; max_attempts){
+    #randomly choose a point for centre of circle
+    rx = runif(1, min_e, max_e)
+    ry = runif(1, min_n, max_n)
+    centre = c(rx,ry)
+    names(centre) = c(&quot;easting&quot;,&quot;northing&quot;)
+    
+    #check if inside our hull - if so we&#39;ll check the number of bombs inside it
+    if(circle_inside_hullEN(centre,r,hull)){
+      valid_centres = bind_rows(valid_centres, 
+                                tibble(easting=centre[1],
+                                       northing=centre[2],
+                                       num_bombs=count_hitsEN(data, r, centre)))
+    } else {
+      num_outside_hull = num_outside_hull + 1
+    }
+    if(dim(valid_centres)[1]==n){
+      #break the loop as we&#39;ve sampled enough
+      i = max_attempts+1
+    } else{
+      i = i + 1
+    }
+  }
+  if(i==max_attempts){
+    warning(paste(&quot;only got&quot;,
+                  dim(valid_centres)[1],
+                  &quot; circles sampled, try changing hull or increasing max_attempts&quot;))}
+  return(valid_centres)
+}</code></pre>
+<p>Now we can sample away:</p>
+<pre class="r"><code>s_rectangle = sample_n_circles(hull=rectangle)
+s_convex = sample_n_circles(hull=convex)
+s_conmid = sample_n_circles(hull=conmid)
+s_concave = sample_n_circles(hull=concave)</code></pre>
+<p>We can also get our equivalent lambda to compare to Clarke - notably smaller than his estimate of around 0.93. This is because North London has a lower density of bomb hits.</p>
+<pre class="r"><code>lambda_from_hits = function(valid_centres){
+  freq_tab = valid_centres %&gt;% group_by(num_bombs) %&gt;% count()
+  sum(freq_tab$num_bombs*freq_tab$n)/sum(freq_tab$n)
+}
+#we&#39;d expect the lambda to go biggest to smallest: I think 
+#it doesn&#39;t as we were just &quot;unlucky&quot; with there being zeros 
+#in the random selection that conmid never got to but concave 
+#did - note consistent seed in sample_n_circles function
+lambdas = purrr::map(list(s_rectangle, s_convex, s_conmid, s_concave), 
+                     lambda_from_hits)
+areas = unlist(purrr::map(list(rectangle, convex, conmid, concave), 
+                          function(x) sp::Polygon(x)@area[[1]]))
+names(lambdas) = c(&#39;s_rectangle&#39;, &#39;s_convex&#39;, &#39;s_conmid&#39;, &#39;s_concave&#39;)
+DT::datatable(data.frame(shape = c(&#39;rectangle&#39;, &#39;convex&#39;, &#39;conmid&#39;, &#39;concave&#39;),
+                         area = round(areas/1000),
+                         lambda  = unlist(unname(lambdas))),
+              colnames = c(&#39;Bounding shape&#39;, &#39;area (km)&#39;,
+                           &#39;lambda (mean no. of bombs per circle during simulation)&#39;))</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4"],["rectangle","convex","conmid","concave"],[467337,337347,265942,231921],[0.477,0.655,0.762,0.757]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Bounding shape<\/th>\n      <th>area (km)<\/th>\n      <th>lambda (mean no. of bombs per circle during simulation)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Intuitively the area gets smaller as the shape does! The lambda value also gets smaller, which makes sense thinking about the fact the tighter the shape the fewer zero counts there will be, hence a larger lambda estimate. The fact that concave has very slightly higher rate than conmid is down to sampling chance - they are practically the same shape.</p>
+</div>
+<div id="perform-the-test" class="section level2">
+<h2><span class="header-section-number">4.3</span> Perform the test</h2>
+<p>Now we have our sample we can get to our equivalent of Clarke’s contingency table but for the circles bootstrapping method.</p>
+<pre class="r"><code>total_circles &lt;- dim(s_conmid)[1]
+lambda &lt;- sum(s_conmid$num_bombs) / total_circles
+lambda</code></pre>
+<pre><code>## [1] 0.762</code></pre>
+<pre class="r"><code>circle_comp_df &lt;- data.frame(num_bombs_per_square = 0:4,
+                            poisson = sapply(seq(0, 4), function(x) 
+                              dpois(x, lambda)*total_circles),
+                            actual = as.numeric(table(s_conmid$num_bombs)[1:5]))
+circle_comp_df &lt;- rbind(circle_comp_df,
+                       data.frame(num_bombs_per_square = &quot;5 and over&quot;, 
+                                  poisson = total_circles-sum(circle_comp_df$poisson),
+                                  actual = 0))
+circle_comp_df</code></pre>
+<pre><code>##   num_bombs_per_square    poisson actual
+## 1                    0 466.732029    495
+## 2                    1 355.649806    320
+## 3                    2 135.502576    126
+## 4                    3  34.417654     46
+## 5                    4   6.556563     13
+## 6           5 and over   1.141372      0</code></pre>
+<pre class="r"><code># Chi-squared test
+chisq.test(circle_comp_df[c(&#39;poisson&#39;,&#39;actual&#39;)])</code></pre>
+<pre><code>## Warning in chisq.test(circle_comp_df[c(&quot;poisson&quot;, &quot;actual&quot;)]): Chi-squared
+## approximation may be incorrect</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  circle_comp_df[c(&quot;poisson&quot;, &quot;actual&quot;)]
+## X-squared = 7.9897, df = 5, p-value = 0.1568</code></pre>
+<p>Note the p-value is smaller than before.</p>
+</div>
+<div id="p-hackers" class="section level2">
+<h2><span class="header-section-number">4.4</span> P-hackers?</h2>
+<p>In the published article we state a p-value of 0.02 from the simulation (Figure 3). This p-value of 0.1568 is, of course, different. With simulations, the value depends very much on the simulated data, which is 1000 randomly simulated points. One could argue we have effectively performed <a href="https://projects.fivethirtyeight.com/p-hacking/">p-hacking</a> with simulations, and just chose the best interpretation, but this honestly is not the case! For one thing, we were very careful not to use the 0.05 traditional statistical rule in the main article, focussing instead on the <em>interpretation</em> of the p-value. We do not have the exact code and seed from when the original p-value was written, which for context was months prior to when we got around to writing this document, but it seems we got lucky and found a lower p-value than in this document.</p>
+<p>However, this does highlight the fact that p-values are quite problematic. If we repeat our simulation 100 times, your intuition might be that the p-values should be similar…but that’s far from the case!</p>
+<pre class="r"><code>#set up the data frame with the known p-value
+pvals_df = tibble(seed = 1749, 
+                  pval = 0.1568)
+
+for (i in 1:100){
+  #sample using seed i
+  s_conmid = sample_n_circles(hull=conmid, seed = i)
+  total_circles &lt;- dim(s_conmid)[1]
+  lambda &lt;- sum(s_conmid$num_bombs) / total_circles
+  circle_comp_df &lt;- data.frame(num_bombs_per_square = 0:4,
+                               poisson = sapply(seq(0, 4), 
+                                                function(x) dpois(x, lambda)*total_circles),
+                               actual = as.numeric(table(s_conmid$num_bombs)[1:5]))
+  circle_comp_df &lt;- rbind(circle_comp_df,
+                          data.frame(num_bombs_per_square = &quot;5 and over&quot;, 
+                                     poisson = total_circles-sum(circle_comp_df$poisson),
+                                     actual = 0))
+  # Chi-squared test
+  test = chisq.test(circle_comp_df[c(&#39;poisson&#39;,&#39;actual&#39;)])
+  #add to data frame
+  pvals_df &lt;- tibble::add_row(pvals_df, seed=i,pval=test$p.value)
+}</code></pre>
+<pre class="r"><code>ggplot(data=pvals_df,mapping=aes(x=pval)) + 
+  geom_histogram(breaks = seq(0,1,0.05)) +
+  labs(title = &#39;p-values for 101 simulations of 1000 points&#39;)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Although there is a peak in the distribution, possible p-values range from very small to quite large. This isn’t an original observation, but it should be a reminder about the trickiness of using p-values. Clarke’s example is popular in textbooks precisely because it’s quite rare to test a fit to a Poisson distribution with a Chi-squared test in such a convincing way.</p>
+</div>
+</div>
+<div id="bomb-density" class="section level1">
+<h1><span class="header-section-number">5</span> Bomb Density</h1>
+<p>An assumption in the Poisson model is that the underlying distribution is uniform. That is to say, anywhere across the London area we have data for, the probability of a V-1 falling is constant. Depending on how you look at it, this may or may not be a fair assumption. On the one hand, of the 10,486 bombs launched by Germany, only 2,420 (23%) fell inside the London Civil Defence Region (<a href="https://www.researchgate.net/publication/327993381_The_V1_Flying_Bomb_attack_on_London_1944-1945_the_applied_geography_of_early_cruise_missile_accuracy">source</a>). One reason for this is many bombs fell outside of London, and a high variance would lead to fairly constant probability throughout London. On the other hand, it seems obvious central London would fare worse, and as the bombs were primarily fired from France you would assume south of the centre would get hit more than the north.</p>
+<p>A Gaussian Mixture model can be used to assess if the underlying distribution is made up of one or more normal distribution. We can look to see if the model picks a centre close to Tower Bridge:</p>
+<pre class="r"><code>gmmod &lt;- mclust::densityMclust(vones %&gt;% select(easting,northing))
+#Note the optimal model selected by BIC criterion involves 3 Gaussians.
+plot(gmmod, what=&#39;density&#39;, type = &#39;hdr&#39;, 
+     data = select(vones, easting,northing), points.cex=0.5)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/gaussian_mixture-1.png" width="672" /></p>
+<p>We can see that 3 Gaussians are selected as the best estimate, so that doesn’t necessarily fit the centred at Tower Bridge assumption. Note a boundary hasn’t been enforced in this method, which may bring the validity of the result into question.</p>
+<p>For a more sophisticated use of mixture modelling, you might want to read <a href="https://www.researchgate.net/publication/334614519_Double_cross_geographic_profiling_of_V-2_impact_sites?enrichId=rgreq-d6c66488bb176ca0eb6650472b0e28d9-XXX&amp;enrichSource=Y292ZXJQYWdlOzMzNDYxNDUxOTtBUzo3ODczNjM3MTg1MDQ0NTBAMTU2NDczMzU0NzI0OA%3D%3D&amp;el=1_x_3&amp;_esc=publicationCoverPdf">this paper</a> (July 2019, published after we wrote our article), which analyses the distribution of V-2s over time.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1><span class="header-section-number">6</span> Conclusions</h1>
+<p>This document hopefully fills some of the gaps as to how we went about performing the analysis for this project. Feel free to get in touch if anything isn’t clear.</p>
+<p>If you plot our equivalent of Clarke’s rectangular region, it looks like the night sky.</p>
+<pre class="r"><code>stars_df = data.frame(vones_region$easting, vones_region$northing)
+plot(stars_df, xaxt=&#39;n&#39;, yaxt=&#39;n&#39;, ann=FALSE)
+rect(par(&quot;usr&quot;)[1],par(&quot;usr&quot;)[3],par(&quot;usr&quot;)[2],par(&quot;usr&quot;)[4],col = &quot;black&quot;)
+points(stars_df, col=&#39;white&#39;, pch=19, cex=0.2)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/star_plot-1.png" width="672" /></p>
+<p>If only shown this picture, you might be hard-pressed to guess what the distribution refers to. That’s the beauty of statistics – the Poisson process can describe a range of wildly different phenomena that nevertheless share something fundamental in common. But while this sort of analysis is fun, it is worth remembering that these numbers have meaning through their connection to real events. Each data point signifies a real V-1 that was deliberately fired to kill civilians. We recommend reading some real memories from members of the public of that time, as archived by the <a href="https://www.bbc.co.uk/history/ww2peopleswar/categories/c54649/">BBC</a>.</p>
+</div>
+<div id="references" class="section level1">
+<h1><span class="header-section-number">7</span> References</h1>
+<p>We have collected some references for further reading, including some which we weren’t able to include in our main article.</p>
+<ul>
+<li><p>Aygin et al. (2019) Double cross: Geographic profiling of V-2 impact sites. <em>Spatial Science</em>. doi: <a href="https://doi.org/10.1080/14498596.2019.1642249">10.1080/14498596.2019.1642249</a></p></li>
+<li><p>Clarke, R. D. (1946) An application of the Poisson distribution. Journal of the Institute of Actuaries, 72, 481. <a href="https://www.cambridge.org/core/journals/journal-of-the-institute-of-actuaries/article/an-application-of-the-poisson-distribution/F75111847FDA534103BD4941BD96A78E">link</a></p></li>
+<li><p>Evans, C. G and Delaney, K. B. (2018) The V1 (Flying Bomb) attack on London (1944–1945); the applied geography of early cruise missile accuracy <em>Applied Geography</em> 99:44-53 doi: <a href="https://doi.org10.1016/j.apgeog.2018.07.019">10.1016/j.apgeog.2018.07.019</a></p></li>
+<li><p>Feller, W. (1950) An Introduction to Probability Theory and its Applications, Volume I. New York: John Wiley &amp; Sons. <a href="https://archive.org/details/AnIntroductionToProbabilityTheoryAndItsApplicationsVolume1/page/n171">pages discussing Clarke’s example</a></p></li>
+<li><p>Franklin, C. (2010) Flying Bombs on London, Summer of 1944. <a href="https://madvis.blogspot.com/2010/09/flying-bombs-on-london-summer-of-1944.html">link</a></p></li>
+<li><p>Lidstone, G. I. (1942) Notes on the Poisson frequency distribution. Journal of the Institute of Actuaries, 71, 284– 291. <a href="https://www.actuaries.org.uk/system/files/documents/pdf/0284-0291.pdf">link</a></p></li>
+<li><p>Memories of V-1s and V-2s. WW2 People’s War. <a href="https://www.bbc.co.uk/history/ww2peopleswar/categories/c54649/">link</a></p></li>
+<li><p>Presentation of an Institute Silver Medal to Mr. Roland David Clarke (1981). Journal of the Institute of Actuaries, 108, 7– 8. <a href="https://www.actuaries.org.uk/system/files/documents/pdf/0007-0008.pdf">link</a></p></li>
+<li><p>Pynchon, T. (1973) Gravity’s Rainbow. London: Cape. <a href="https://www.amazon.co.uk/Gravitys-Rainbow-Vintage-Thomas-Pynchon/dp/0099511754/ref=sr_1_1?keywords=gravity%27s+rainbow&amp;qid=1570467634&amp;sr=8-1">Amazon link</a></p></li>
+<li><p>Ward, L. (2015) The London County Council Bomb Damage Maps 1939–1945. London: Thames &amp; Hudson. <a href="https://www.amazon.co.uk/London-County-Council-Damage-1939-1945/dp/0500518254/">Amazon link</a></p></li>
+</ul>
+</div>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>

@@ -1,0 +1,31 @@
+baseurl = "/"
+languageCode = "en-gb"
+title = "Luke Shaw"
+theme = "hugo-xmin"
+googleAnalytics = ""
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+
+[permalinks]
+    post = "/:slug/"
+
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
+[[menu.main]]
+    name = "Blogs"
+    url = "/"
+    weight = 2
+[[menu.main]]
+    name = "CV"
+    url = "/CV"
+    weight = 3
+#[[menu.main]]
+#    name = "contact"
+#    url = "/contact/"
+#    weight = 3
+    
+[params]
+    footer = "[GitHub](https://github.com/Luke-Shaw) | [Twitter](https://twitter.com/lukefshaw) | [Linkedin](https://www.linkedin.com/in/luke-shaw-bba802153/)"
+    

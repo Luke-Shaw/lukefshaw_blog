@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>&#34;The flying bomb and the actuary&#34;: supplementary analysis | Luke Shaw</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/about/">About</a></li>
+      
+      <li><a href="/">Blogs</a></li>
+      
+      <li><a href="/cv">CV</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">&ldquo;The flying bomb and the actuary&rdquo;: supplementary analysis</span></h1>
+<h2 class="author">Liam Shaw, Luke Shaw</h2>
+<h2 class="date">2019/10/04</h2>
+</div>
+
+<main>
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#about"><span class="toc-section-number">1</span> About</a></li>
+<li><a href="#data-import-and-clean"><span class="toc-section-number">2</span> Data import and clean</a></li>
+<li><a href="#replicating-clarke"><span class="toc-section-number">3</span> Replicating Clarke</a><ul>
+<li><a href="#the-grid"><span class="toc-section-number">3.1</span> The Grid</a></li>
+<li><a href="#mirroring-clarke-with-a-chi-squared-warning"><span class="toc-section-number">3.2</span> Mirroring Clarke, with a chi-squared warning?</a></li>
+<li><a href="#copying-clarke-exactly"><span class="toc-section-number">3.3</span> Copying Clarke exactly</a></li>
+<li><a href="#is-there-a-mistake"><span class="toc-section-number">3.4</span> … Is there a mistake?</a></li>
+</ul></li>
+<li><a href="#spherical-clarke---random-sampling"><span class="toc-section-number">4</span> “Spherical Clarke” - Random Sampling</a><ul>
+<li><a href="#a-border-for-our-data"><span class="toc-section-number">4.1</span> A border for our data</a></li>
+<li><a href="#creating-the-simulation"><span class="toc-section-number">4.2</span> Creating the simulation</a></li>
+<li><a href="#perform-the-test"><span class="toc-section-number">4.3</span> Perform the test</a></li>
+<li><a href="#p-hackers"><span class="toc-section-number">4.4</span> P-hackers?</a></li>
+</ul></li>
+<li><a href="#bomb-density"><span class="toc-section-number">5</span> Bomb Density</a></li>
+<li><a href="#conclusions"><span class="toc-section-number">6</span> Conclusions</a></li>
+<li><a href="#references"><span class="toc-section-number">7</span> References</a></li>
+</ul>
+</div>
+
+<div id="about" class="section level1">
+<h1><span class="header-section-number">1</span> About</h1>
+<p>This is a supplementary analysis file for the article “<a href="https://doi.org/10.1111/j.1740-9713.2019.01315.x">The flying bomb and the actuary</a>” published in <em>Significance</em> (October 2019).</p>
+<p>The Significance article tells the story of our attempt to recreate a <a href="https://www.cambridge.org/core/journals/journal-of-the-institute-of-actuaries/article/an-application-of-the-poisson-distribution/F75111847FDA534103BD4941BD96A78E">paper</a> by R. D. Clarke from 1946 showing that V-1s falling on London followed a Poisson distribution. The article details the data cleaning and analysis we carried out in R on a dataset of <a href="https://www.google.com/maps/d/viewer?mid=1VwyxV_e_LAwzbyJPCAF-C7aCRVNA5W7N&amp;ll=51.509018493447314%2C-0.0532458896298067&amp;z=14">V-1 and V-2 impacts on London</a>, compiled from photographs of the original London County Council bomb damage maps <a href="https://www.amazon.co.uk/London-County-Council-Damage-1939-1945/dp/0500518254/">published</a> by the London Metropolitan Archives. For more information on the <a href="https://en.wikipedia.org/wiki/V-1_flying_bomb">V-1</a> and <a href="https://en.wikipedia.org/wiki/V-2_rocket">V-2</a> bombs, see Wikipedia.</p>
+<p>The purpose of this document is:</p>
+<ol style="list-style-type: decimal">
+<li>to reproduce the analysis covered in the article.</li>
+<li>to act as a guide for those looking to do further exploration of the dataset.</li>
+</ol>
+<p>Disclaimers:</p>
+<ul>
+<li>We are not experts in spatial statistics, so this is quite a basic analysis.</li>
+<li>There may be mistakes, as this document is deliberately a “show your working”. Constructive criticism is very welcome!</li>
+<li>Code: in general, we have used the <a href="https://www.tidyverse.org">tidyverse</a> i.e. the preferred format for data is a tibble. However, there is no enforcement of tidyverse rules and the code sometimes switches to base R when it seems most convenient.</li>
+</ul>
+<p>Please feel free to get in touch with errors/comments/questions: you can email us at <em>liam [dot] philip [dot] shaw [at] gmail.com</em> and <em>luke [dot] francis [dot] shaw [at] gmail.com</em>. We are also (<a href="https://twitter.com/liampshaw">Liam</a>, <a href="https://twitter.com/lukefshaw">Luke</a>) on Twitter.</p>
+</div>
+<div id="data-import-and-clean" class="section level1">
+<h1><span class="header-section-number">2</span> Data import and clean</h1>
+<p>All packages required:</p>
+<pre class="r"><code>library(rgdal)
+library(ggforce)
+library(tidyverse)
+library(geosphere)
+library(remotes)
+remotes::install_github(&quot;geotheory/londonShapefiles&quot;)</code></pre>
+<pre><code>## * checking for file &#39;C:\Users\Luke\AppData\Local\Temp\RtmpEXFvc4\remotes3270e957772\geotheory-londonShapefiles-7938344/DESCRIPTION&#39; ... OK
+## * preparing &#39;londonShapefiles&#39;:
+## * checking DESCRIPTION meta-information ... OK
+## * checking for LF line-endings in source and make files and shell scripts
+## * checking for empty or unneeded directories
+## * building &#39;londonShapefiles_1.0.tar.gz&#39;</code></pre>
+<pre class="r"><code>library(maptools)
+library(concaveman)
+library(mclust)
+library(DT)</code></pre>
+<p>First we read in the data. The file “bomb_map.kml” is the downloaded file from the Google Maps <a href="https://www.google.com/maps/d/viewer?mid=1VwyxV_e_LAwzbyJPCAF-C7aCRVNA5W7N&amp;ll=51.509018493447314%2C-0.0532458896298067&amp;z=14">layer</a> with the impacts, stored in the appropriate directory. There may be a nifty way to directly read from the url directly.</p>
+<pre class="r"><code>vones = readOGR(dsn = &quot;bomb_map.kml&quot;, layer = &quot;V1&quot;)
+vones = as_tibble(vones)
+#give sensible column names
+colnames(vones)[colnames(vones)==&quot;coords.x1&quot;] &lt;- &quot;long&quot;
+colnames(vones)[colnames(vones)==&quot;coords.x2&quot;] &lt;- &quot;lat&quot;</code></pre>
+<p>The analysis we are doing focuses on the distance between points. Latitude and longitude are <a href="https://en.wikipedia.org/wiki/Longitude#Length_of_a_degree_of_longitude">not ideal</a> for this, as they represent angles. Moving one degree in a direction can result in a great deal more movement than in another, depending on the location on the Earth’s surface. Instead, we need a spatial reference system. We chose to convert to the Ordnance Survey standard <a href="https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid">British National Grid</a>, in which the Eastings and Northings have units in metres. This means we can use traditional euclidean geometry to estimate distance between points. We found the code to do this <a href="http://rstudio-pubs-static.s3.amazonaws.com/19879_7e13ab80d5ed416c8e235bd6bb93cf3e.html">here</a>.</p>
+<pre class="r"><code>#initially in latitude, longitude
+cord.dec = SpatialPoints(cbind(vones$long, vones$lat), proj4string=CRS(&quot;+proj=longlat&quot;))
+#UK epsg https://spatialreference.org/ref/epsg/osgb-1936-british-national-grid/
+cord.UTM &lt;- sp::spTransform(cord.dec, CRS(&quot;+init=epsg:27700&quot;))</code></pre>
+<pre><code>## Warning in showSRID(uprojargs, format = &quot;PROJ&quot;, multiline = &quot;NO&quot;): Discarded
+## datum OSGB_1936 in CRS definition</code></pre>
+<pre class="r"><code>#add BNG to vones dataset
+vones$easting = cord.UTM$coords.x1
+vones$northing = cord.UTM$coords.x2
+#tidy up
+vones = dplyr::select(vones,c(&quot;Description&quot;, &quot;easting&quot;,&quot;northing&quot;))</code></pre>
+<p>For plotting, we want something to give an impression of location within London. We could use rasters and maps, but the simplest solution is to include the River Thames (as anybody who’s seen <a href="https://en.wikipedia.org/wiki/EastEnders">Eastenders</a> will know). Thanks to <a href="https://github.com/geotheory/londonShapefiles">geotheory</a> for the shapefile!</p>
+<pre class="r"><code>londonShapefiles::load_thames()  # River Thames
+#strip away all but essential info - our plotting needs are simple
+thames_line = thames@polygons[[1]]@Polygons[[1]]@coords
+thames_line = thames_line %&gt;%
+  tibble::as_tibble() %&gt;%
+  dplyr::rename(easting=V1,northing=V2) %&gt;%
+  dplyr::filter(easting&gt;520000,easting&lt;550000)</code></pre>
+<p>Now we can create an initial plot with the V-1 bomb locations and the Thames.</p>
+<pre class="r"><code>base_plot = ggplot(data=vones, aes(x=easting, y=northing)) + 
+  coord_fixed() + 
+  theme_bw() + 
+  geom_point() + 
+  geom_polygon(data=thames_line, alpha=1, aes(col = 2, fill = 2)) +
+  theme(legend.position = &quot;none&quot;)
+base_plot</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/init_plot-1.png" width="672" /></p>
+</div>
+<div id="replicating-clarke" class="section level1">
+<h1><span class="header-section-number">3</span> Replicating Clarke</h1>
+<div id="the-grid" class="section level2">
+<h2><span class="header-section-number">3.1</span> The Grid</h2>
+<p>Clarke is not specific about the exact location of his grid that he chose. Here the things we knew about the area:</p>
+<ol style="list-style-type: decimal">
+<li>Made of 576 squares, each with width 0.25km<span class="math inline">\(^2\)</span></li>
+<li>537 V-1 bombs fallen inside it</li>
+<li>In “south London”</li>
+<li>(probably) follows BNG lines, as Clarke would have been using standard British maps</li>
+</ol>
+<p>We’re not sure whether the London County Council maps contain the whole area that Clarke used. So we choose a reasonable area that contains 532 V-1s (not 576) and fitted all the other criteria.</p>
+<pre class="r"><code>#The boundaries were chosen to have same dimensions a clarke and to 
+#have roughly the same number of bombs in
+xmin = 525000
+xmax = 543000
+ymin = 172000
+ymax = 180000
+base_plot+geom_rect(xmin=xmin, xmax=xmax, 
+                    ymin=ymin, ymax=ymax,
+                    alpha=0.1, fill=NA, colour=&quot;red&quot;, size=0.5)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/clarke_v1-1.png" width="672" /></p>
+<p>Now we have the grid, we can replicate the analysis to get the same contingency table as Clarke.</p>
+</div>
+<div id="mirroring-clarke-with-a-chi-squared-warning" class="section level2">
+<h2><span class="header-section-number">3.2</span> Mirroring Clarke, with a chi-squared warning?</h2>
+<pre class="r"><code>#cutout just the bombs inside the rectangle
+vones_region &lt;- vones[which(vones$easting&gt;xmin &amp; vones$easting&lt;xmax &amp;
+                              vones$northing&gt;ymin &amp; vones$northing&lt;ymax),]
+
+# Table up the counts
+step = 500
+nrow_x = (xmax-xmin)/step
+ncol_y = (ymax-ymin)/step
+total_squares &lt;- (nrow_x * ncol_y)
+hits_matrix &lt;- matrix(nrow = nrow_x, ncol=ncol_y)
+for (i in seq(1, nrow_x)){
+  for (j in seq(1, ncol_y)){
+    hits_matrix[i, j] &lt;- nrow(vones_region[which(vones_region$easting&gt;xmin+step*(i-1) &amp;
+                                                   vones_region$easting&lt;xmin+step*i &amp;
+                                                   vones_region$northing&gt;ymin+step*(j-1) &amp;
+                                                   vones_region$northing&lt;ymin+step*j),]) 
+  }
+}
+# Lambda
+lambda &lt;- nrow(vones_region) / total_squares
+
+# Replicate Clarke
+comparison_df &lt;- data.frame(num_bombs_per_square = 0:4,
+                            poisson = sapply(seq(0, 4), 
+                                             function(x) dpois(x, lambda)*total_squares),
+                            actual = as.numeric(table(hits_matrix)[1:5]))
+comparison_df &lt;- rbind(comparison_df,
+                       data.frame(num_bombs_per_square = &quot;5 and over&quot;, 
+                                  poisson = 576-sum(comparison_df$poisson),
+                                  actual = as.numeric(table(hits_matrix))[6]))
+# Chi-squared test
+chisq.test(comparison_df[c(&#39;poisson&#39;,&#39;actual&#39;)])</code></pre>
+<pre><code>## Warning in chisq.test(comparison_df[c(&quot;poisson&quot;, &quot;actual&quot;)]): Chi-squared
+## approximation may be incorrect</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  comparison_df[c(&quot;poisson&quot;, &quot;actual&quot;)]
+## X-squared = 0.64365, df = 5, p-value = 0.9859</code></pre>
+<p>Hold on a second, what’s that error: <em>“Chi-squared approximation may be incorrect”</em>?</p>
+<p>It turns out it’s because we have small categories, namely the “5 and over” row. One change could be to simulate the values instead (the function has a “simulate.p.value” parameter), but this will still be inconsistent due to the small numbers in the table. All that matters for the narrative is that the p-value is always large, which shows the columns are similar and hence we have no reason to reject the hypothesis that the bombs fell at random in the area chosen. But as a statistician this is still unsatisfying.</p>
+</div>
+<div id="copying-clarke-exactly" class="section level2">
+<h2><span class="header-section-number">3.3</span> Copying Clarke exactly</h2>
+<p>Clarke quotes some of his intermediate results in <a href="https://www.cambridge.org/core/journals/journal-of-the-institute-of-actuaries/article/an-application-of-the-poisson-distribution/F75111847FDA534103BD4941BD96A78E">his paper</a>:</p>
+<blockquote>
+<p>Applying the <span class="math inline">\(\chi^2\)</span> test the comparison of actual with expected figures, we obtain <span class="math inline">\(\chi^2 = 1.17\)</span>. There are 4 degrees of freedom, and the probability of observing this or a higher value of <span class="math inline">\(\chi^2\)</span> is .88</p>
+</blockquote>
+<pre class="r"><code>#numbers from his paper
+clarke_df = data.frame(num_bombs_per_square = 0:4,
+                       poisson = 576*dpois(x=0:4, lambda = 537/576),
+                       actual = c(229,211,93,35,7))
+clarke_df = rbind(clarke_df, 
+                  data.frame(num_bombs_per_square = 5,
+                             poisson = 576-sum(clarke_df$poisson),
+                             actual = 1))
+#doing step-by-step
+clarke_df$test_stat_components = (clarke_df$actual - clarke_df$poisson)^2 / clarke_df$poisson
+clarke_test_stat = sum(clarke_df$test_stat_components) #1.17
+clarkes_pvalue = pchisq(clarke_test_stat, df = 4, lower.tail=FALSE)
+print(paste(&#39;We recreate Clarke\&#39;s p-value as &#39;, clarkes_pvalue, &#39;(he says .88)&#39;))</code></pre>
+<pre><code>## [1] &quot;We recreate Clarke&#39;s p-value as  0.883150518919159 (he says .88)&quot;</code></pre>
+</div>
+<div id="is-there-a-mistake" class="section level2">
+<h2><span class="header-section-number">3.4</span> … Is there a mistake?</h2>
+<p>We get the same warning as previously when using his table (not shown). So we can replicate Clarke’s example, but…you may be wondering, shouldn’t there be 5 degrees of freedom, not 4? When first shown the chi-squared test you learn the rule that the degrees of freedom is <span class="math inline">\((number\ of\ rows\ - 1) * (number\ of\ columns - 1)\)</span> which here is <span class="math inline">\((6-1)*(2-1)\)</span> = 5. Thinking in terms of what “degrees of freedom” means, this makes sense: when you get to the last row the numbers are fixed as we know both columns add to 256.</p>
+<p>So did Clarke get it wrong? We were pretty certain the answer was “yes”, as this blog and the main article initially claimed. But the real answer is “no”, and we are thankful to Erik Holst for this correction. The reason 4 degrees of freedom is correct is that a parameter had been estimated during the table creation - the lambda value used in the calculation of the expected number of squares. Thus we have lost another degree of freedom: <span class="math inline">\(6 - 1 - 1 = 4\)</span>.</p>
+<p>Whatever permutation of the degrees of freedom and method we use, the p-value is always large, so the narrative is untouched. The distribution of V-1 impacts is well-described by a Poisson distribution.</p>
+</div>
+</div>
+<div id="spherical-clarke---random-sampling" class="section level1">
+<h1><span class="header-section-number">4</span> “Spherical Clarke” - Random Sampling</h1>
+<p>We had the idea of using a more modern technique: randomly sampling a point and counted the bombs within a certain distance from it. Whereas Clarke dealt with a grid of squares, this techniques means dealing with circles (defined by a point and a radius).</p>
+<p>To get a comparable lambda estimate to Clarke’s <span class="math inline">\(537/576 \approx 0.93\)</span>, we need to use the same area. Clarke’s estimate is the number of bombs falling in a 0.25km square. To map this to circles and find the radius we need to only use our trusty circle area formula <span class="math inline">\(area = \pi r^2\)</span>. Note how tricky this would be to do in latitude/longitude coordinates, however, in BNG easting/northing the units are metres so we can easily calculate our necessary radius:</p>
+<p><span class="math display">\[r = \sqrt{500^2 / \pi} = \sqrt{250000 / \pi} = 282.094... \approx 282m\]</span></p>
+<p>Now we have our circle radius we can copy Clarke’s methodology using circles instead of squares. We can also re-sample from circles already covered, sampling with replacement. Clarke was limited by physical map paper, but we can simulate as many times as we want!</p>
+<p>Simulation approach:</p>
+<ol style="list-style-type: decimal">
+<li>n times:
+<ul>
+<li>randomly pick a location (x,y)</li>
+<li>count the number of bombs that landed within the circle with centre (x,y) and area 0.25km^2</li>
+</ul></li>
+<li>calculate the rate of bomb hits (our lambda estimate in Poisson terms)</li>
+</ol>
+<p>This is a simple form of bootstrapping. Some further work could be to bootstrap to find the standard error in our final lambda estimate, as described by Jodie Burchell <a href="http://t-redactyl.io/blog/2015/09/a-gentle-introduction-to-bootstrapping.html">here</a>.</p>
+<div id="a-border-for-our-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> A border for our data</h2>
+<p>We have the issue of not easily knowing the exact border of our data. We know that V-1 bombs fell outside of the data we have, as our data is only for the area is the County of London, which no longer exists. Because this area was in use over 70 years ago we couldn’t easily find a ready-made shapefile online!</p>
+<p>A fix is to look at creating a hull, which is a polygon that covers our set of points. We can have: a convex hull, which is too bloated; a concave hull, which is too jagged; or a 'Goldilocks hull', which is 'just right' (sorry…).</p>
+<pre class="r"><code>#most simple hull - a rectangle defined by furthest bomb points 
+min_e = min(vones$easting)
+max_e = max(vones$easting)
+min_n = min(vones$northing)
+max_n = max(vones$northing)
+rectangle = tibble(easting =  c(min_e, min_e, max_e, max_e, min_e),
+                   northing = c(min_n, max_n, max_n, min_n, min_n))
+
+#convex (bloated) hull
+convex = concaveman::concaveman(cbind(vones$easting, vones$northing), concavity = 10000)
+convex = convex %&gt;% as_tibble() %&gt;% rename(easting=V1,northing=V2)
+
+#concave (tight) hull
+concave = concaveman::concaveman(cbind(vones$easting, vones$northing), concavity = 1)
+concave = concave %&gt;% as_tibble() %&gt;% rename(easting=V1,northing=V2)
+
+#conmid (goldilocks) hull
+conmid = concaveman::concaveman(cbind(vones$easting, vones$northing), concavity = 2)
+conmid = conmid %&gt;% as_tibble() %&gt;% rename(easting=V1,northing=V2)
+
+hulls = rbind(cbind(rectangle, type=&quot;rectangle&quot;),
+              cbind(convex,type=&quot;convex&quot;),
+              cbind(concave,type=&quot;concave&quot;),
+              cbind(conmid,type=&quot;goldilocks&quot;))
+hulls = mutate(hulls, type = as.character(type))
+hulls = as_tibble(hulls)
+
+#why doesn&#39;t this work?
+#base_plot + geom_path(data = hulls, aes(colour=type))
+
+hulls_plot = ggplot(vones, aes(x=easting, y=northing)) + 
+  geom_point() +
+  geom_path(data = hulls, aes(colour=type)) +
+  theme_bw() +
+  ggtitle(&#39;Candidate hulls for our boundary&#39;)
+hulls_plot</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/hull-1.png" width="672" /></p>
+<p>If we pick a hull that’s too <em>large</em>, we expect <em>underestimate</em> the bomb rate as we’ll have more arbitrary zeros, and if we pick a hull that is too <em>small</em> the reverse will happen.</p>
+<pre class="r"><code>vone_boundary_plot = ggplot(data=vones, aes(x=easting, y=northing)) + 
+  coord_fixed() + 
+  theme_bw() +
+  theme(panel.grid = element_blank()) + 
+  geom_polygon(data=thames_line, alpha=1, aes(col = 2, fill = 2)) +
+  geom_path(data = hulls %&gt;% filter(type==&#39;goldilocks&#39;), colour=&#39;darkgrey&#39;, size = 2) +
+  geom_point() + 
+  theme(legend.position = &quot;none&quot;) +
+  ggtitle(&#39;\&quot;conmid\&quot; (goldilocks) is chosen as the preferred boundary&#39;)
+vone_boundary_plot</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/conmid-plot-bombs-1.png" width="672" /></p>
+</div>
+<div id="creating-the-simulation" class="section level2">
+<h2><span class="header-section-number">4.2</span> Creating the simulation</h2>
+<p>Our simulation approach now has a vital new step:</p>
+<ol style="list-style-type: decimal">
+<li>n times:
+<ul>
+<li>randomly pick a location (x,y)</li>
+<li><em>check the circle of area <span class="math inline">\(0.25km^2\)</span> centre (x,y) is inside the hull</em>. If not, try again</li>
+<li>count the number of bombs that landed within the circle with centre (x,y) and area <span class="math inline">\(0.25km^2\)</span></li>
+</ul></li>
+<li>calculate the rate of bomb hits (our lambda estimate in Poisson terms)</li>
+</ol>
+<p>We need a few sub-functions for this process:</p>
+<pre class="r"><code>###Function for checking the circle is in the hull:
+
+circle_inside_hullEN = function(centre, radius, hull){
+  #given the centre and radius of a circle, output TRUE if the circle 
+  #is entirely inside the hull, and FALSE if not
+  if(!identical(names(centre),c(&quot;easting&quot;, &quot;northing&quot;))){
+    stop(&quot;centre names must be c(\&quot;easting\&quot;,  \&quot;northing\&quot;) in that order&quot;)
+  }
+  
+  #take 360 points on the circle, then we&#39;ll individually check if inside the hull
+  circle_points = tibble::tibble(easting = centre[1] + radius * cos(1:360),
+                                 northing = centre[2] + radius * sin(1:360))
+  inside = sp::point.in.polygon(point.x = circle_points$easting, 
+                                point.y = circle_points$northing,
+                                pol.x = hull$easting, pol.y = hull$northing)
+  return(all(inside!=0))
+}
+
+###Function for counting the number of bombs inside the circle:
+
+count_hitsEN &lt;- function(data, radius, centre){
+  # function to check if a point is inside the circle, in Easting / Northing defn
+  if(centre[1] &lt; 500000 | centre[2] &gt; 190000){
+    stop(&quot;centre not in format (easting,northing)&quot;)
+  }
+  #function to return TRUE/FALSE for statement &quot;point is inside circle&quot;
+  inside = function(easting, northing){
+    return( (easting-centre[1])^2 + (northing-centre[2])^2 &lt; radius^2 )
+  }
+  # run on all bombs
+  bomb_count &lt;- data %&gt;% 
+    as_tibble() %&gt;% 
+    mutate(inside=inside(easting, northing)) %&gt;%
+    filter(inside==TRUE) %&gt;%
+    count()
+  return(bomb_count$n)
+}
+
+###Function for sampling circles and counting the number of bombs within them:
+
+sample_n_circles = function(data=vones, 
+                            n = 1000,
+                            hull = conmid, 
+                            r = sqrt(500^2 / pi),
+                            max_attempts = 10000,
+                            seed=1729){
+  #Sampling the number of points within n random circles radius r that are 
+  #inside the hull
+  
+  num_outside_hull = 0 #for keeping track of bad circles
+  set.seed(seed)
+
+  #initialise our output data set
+  valid_centres &lt;- as_tibble(data.frame(matrix(nrow=0,ncol=3)))
+  colnames(valid_centres) &lt;- c(&quot;easting&quot;, &quot;northing&quot;, &quot;num_bombs&quot;)
+  
+  #loop through
+  i = 1
+  while(i &lt; max_attempts){
+    #randomly choose a point for centre of circle
+    rx = runif(1, min_e, max_e)
+    ry = runif(1, min_n, max_n)
+    centre = c(rx,ry)
+    names(centre) = c(&quot;easting&quot;,&quot;northing&quot;)
+    
+    #check if inside our hull - if so we&#39;ll check the number of bombs inside it
+    if(circle_inside_hullEN(centre,r,hull)){
+      valid_centres = bind_rows(valid_centres, 
+                                tibble(easting=centre[1],
+                                       northing=centre[2],
+                                       num_bombs=count_hitsEN(data, r, centre)))
+    } else {
+      num_outside_hull = num_outside_hull + 1
+    }
+    if(dim(valid_centres)[1]==n){
+      #break the loop as we&#39;ve sampled enough
+      i = max_attempts+1
+    } else{
+      i = i + 1
+    }
+  }
+  if(i==max_attempts){
+    warning(paste(&quot;only got&quot;,
+                  dim(valid_centres)[1],
+                  &quot; circles sampled, try changing hull or increasing max_attempts&quot;))}
+  return(valid_centres)
+}</code></pre>
+<p>Now we can sample away:</p>
+<pre class="r"><code>s_rectangle = sample_n_circles(hull=rectangle)
+s_convex = sample_n_circles(hull=convex)
+s_conmid = sample_n_circles(hull=conmid)
+s_concave = sample_n_circles(hull=concave)</code></pre>
+<p>We can also get our equivalent lambda to compare to Clarke - notably smaller than his estimate of around 0.93. This is because North London has a lower density of bomb hits.</p>
+<pre class="r"><code>lambda_from_hits = function(valid_centres){
+  freq_tab = valid_centres %&gt;% group_by(num_bombs) %&gt;% count()
+  sum(freq_tab$num_bombs*freq_tab$n)/sum(freq_tab$n)
+}
+#we&#39;d expect the lambda to go biggest to smallest: I think 
+#it doesn&#39;t as we were just &quot;unlucky&quot; with there being zeros 
+#in the random selection that conmid never got to but concave 
+#did - note consistent seed in sample_n_circles function
+lambdas = purrr::map(list(s_rectangle, s_convex, s_conmid, s_concave), 
+                     lambda_from_hits)
+areas = unlist(purrr::map(list(rectangle, convex, conmid, concave), 
+                          function(x) sp::Polygon(x)@area[[1]]))
+names(lambdas) = c(&#39;s_rectangle&#39;, &#39;s_convex&#39;, &#39;s_conmid&#39;, &#39;s_concave&#39;)
+DT::datatable(data.frame(shape = c(&#39;rectangle&#39;, &#39;convex&#39;, &#39;conmid&#39;, &#39;concave&#39;),
+                         area = round(areas/1000),
+                         lambda  = unlist(unname(lambdas))),
+              colnames = c(&#39;Bounding shape&#39;, &#39;area (km)&#39;,
+                           &#39;lambda (mean no. of bombs per circle during simulation)&#39;))</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4"],["rectangle","convex","conmid","concave"],[467450,337428,266006,231977],[0.477,0.655,0.761,0.756]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Bounding shape<\/th>\n      <th>area (km)<\/th>\n      <th>lambda (mean no. of bombs per circle during simulation)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Intuitively the area gets smaller as the shape does! The lambda value also gets smaller, which makes sense thinking about the fact the tighter the shape the fewer zero counts there will be, hence a larger lambda estimate. The fact that concave has very slightly higher rate than conmid is down to sampling chance - they are practically the same shape.</p>
+</div>
+<div id="perform-the-test" class="section level2">
+<h2><span class="header-section-number">4.3</span> Perform the test</h2>
+<p>Now we have our sample we can get to our equivalent of Clarke’s contingency table but for the circles bootstrapping method.</p>
+<pre class="r"><code>total_circles &lt;- dim(s_conmid)[1]
+lambda &lt;- sum(s_conmid$num_bombs) / total_circles
+lambda</code></pre>
+<pre><code>## [1] 0.761</code></pre>
+<pre class="r"><code>circle_comp_df &lt;- data.frame(num_bombs_per_square = 0:4,
+                            poisson = sapply(seq(0, 4), function(x) 
+                              dpois(x, lambda)*total_circles),
+                            actual = as.numeric(table(s_conmid$num_bombs)[1:5]))
+circle_comp_df &lt;- rbind(circle_comp_df,
+                       data.frame(num_bombs_per_square = &quot;5 and over&quot;, 
+                                  poisson = total_circles-sum(circle_comp_df$poisson),
+                                  actual = 0))
+circle_comp_df</code></pre>
+<pre><code>##   num_bombs_per_square    poisson actual
+## 1                    0 467.198994    496
+## 2                    1 355.538435    319
+## 3                    2 135.282374    126
+## 4                    3  34.316629     46
+## 5                    4   6.528739     13
+## 6           5 and over   1.134829      0</code></pre>
+<pre class="r"><code># Chi-squared test
+chisq.test(circle_comp_df[c(&#39;poisson&#39;,&#39;actual&#39;)])</code></pre>
+<pre><code>## Warning in chisq.test(circle_comp_df[c(&quot;poisson&quot;, &quot;actual&quot;)]): Chi-squared
+## approximation may be incorrect</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  circle_comp_df[c(&quot;poisson&quot;, &quot;actual&quot;)]
+## X-squared = 8.1489, df = 5, p-value = 0.1482</code></pre>
+<p>Note the p-value is smaller than before.</p>
+</div>
+<div id="p-hackers" class="section level2">
+<h2><span class="header-section-number">4.4</span> P-hackers?</h2>
+<p>In the published article we state a p-value of 0.02 from the simulation (Figure 3). This p-value of 0.1568 is, of course, different. With simulations, the value depends very much on the simulated data, which is 1000 randomly simulated points. One could argue we have effectively performed <a href="https://projects.fivethirtyeight.com/p-hacking/">p-hacking</a> with simulations, and just chose the best interpretation, but this honestly is not the case! For one thing, we were very careful not to use the 0.05 traditional statistical rule in the main article, focussing instead on the <em>interpretation</em> of the p-value. We do not have the exact code and seed from when the original p-value was written, which for context was months prior to when we got around to writing this document, but it seems we got lucky and found a lower p-value than in this document.</p>
+<p>However, this does highlight the fact that p-values are quite problematic. If we repeat our simulation 100 times, your intuition might be that the p-values should be similar…but that’s far from the case!</p>
+<pre class="r"><code>#set up the data frame with the known p-value
+pvals_df = tibble(seed = 1749, 
+                  pval = 0.1568)
+
+for (i in 1:100){
+  #sample using seed i
+  s_conmid = sample_n_circles(hull=conmid, seed = i)
+  total_circles &lt;- dim(s_conmid)[1]
+  lambda &lt;- sum(s_conmid$num_bombs) / total_circles
+  circle_comp_df &lt;- data.frame(num_bombs_per_square = 0:4,
+                               poisson = sapply(seq(0, 4), 
+                                                function(x) dpois(x, lambda)*total_circles),
+                               actual = as.numeric(table(s_conmid$num_bombs)[1:5]))
+  circle_comp_df &lt;- rbind(circle_comp_df,
+                          data.frame(num_bombs_per_square = &quot;5 and over&quot;, 
+                                     poisson = total_circles-sum(circle_comp_df$poisson),
+                                     actual = 0))
+  # Chi-squared test
+  test = chisq.test(circle_comp_df[c(&#39;poisson&#39;,&#39;actual&#39;)])
+  #add to data frame
+  pvals_df &lt;- tibble::add_row(pvals_df, seed=i,pval=test$p.value)
+}</code></pre>
+<pre class="r"><code>ggplot(data=pvals_df,mapping=aes(x=pval)) + 
+  geom_histogram(breaks = seq(0,1,0.05)) +
+  labs(title = &#39;p-values for 101 simulations of 1000 points&#39;)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Although there is a peak in the distribution, possible p-values range from very small to quite large. This isn’t an original observation, but it should be a reminder about the trickiness of using p-values. Clarke’s example is popular in textbooks precisely because it’s quite rare to test a fit to a Poisson distribution with a Chi-squared test in such a convincing way.</p>
+</div>
+</div>
+<div id="bomb-density" class="section level1">
+<h1><span class="header-section-number">5</span> Bomb Density</h1>
+<p>An assumption in the Poisson model is that the underlying distribution is uniform. That is to say, anywhere across the London area we have data for, the probability of a V-1 falling is constant. Depending on how you look at it, this may or may not be a fair assumption. On the one hand, of the 10,486 bombs launched by Germany, only 2,420 (23%) fell inside the London Civil Defence Region (<a href="https://www.researchgate.net/publication/327993381_The_V1_Flying_Bomb_attack_on_London_1944-1945_the_applied_geography_of_early_cruise_missile_accuracy">source</a>). One reason for this is many bombs fell outside of London, and a high variance would lead to fairly constant probability throughout London. On the other hand, it seems obvious central London would fare worse, and as the bombs were primarily fired from France you would assume south of the centre would get hit more than the north.</p>
+<p>A Gaussian Mixture model can be used to assess if the underlying distribution is made up of one or more normal distribution. We can look to see if the model picks a centre close to Tower Bridge:</p>
+<pre class="r"><code>gmmod &lt;- mclust::densityMclust(vones %&gt;% select(easting,northing))
+#Note the optimal model selected by BIC criterion involves 3 Gaussians.
+plot(gmmod, what=&#39;density&#39;, type = &#39;hdr&#39;, 
+     data = select(vones, easting,northing), points.cex=0.5)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/gaussian_mixture-1.png" width="672" /></p>
+<p>We can see that 3 Gaussians are selected as the best estimate, so that doesn’t necessarily fit the centred at Tower Bridge assumption. Note a boundary hasn’t been enforced in this method, which may bring the validity of the result into question.</p>
+<p>For a more sophisticated use of mixture modelling, you might want to read <a href="https://www.researchgate.net/publication/334614519_Double_cross_geographic_profiling_of_V-2_impact_sites?enrichId=rgreq-d6c66488bb176ca0eb6650472b0e28d9-XXX&amp;enrichSource=Y292ZXJQYWdlOzMzNDYxNDUxOTtBUzo3ODczNjM3MTg1MDQ0NTBAMTU2NDczMzU0NzI0OA%3D%3D&amp;el=1_x_3&amp;_esc=publicationCoverPdf">this paper</a> (July 2019, published after we wrote our article), which analyses the distribution of V-2s over time.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1><span class="header-section-number">6</span> Conclusions</h1>
+<p>This document hopefully fills some of the gaps as to how we went about performing the analysis for this project. Feel free to get in touch if anything isn’t clear.</p>
+<p>If you plot our equivalent of Clarke’s rectangular region, it looks like the night sky.</p>
+<pre class="r"><code>stars_df = data.frame(vones_region$easting, vones_region$northing)
+plot(stars_df, xaxt=&#39;n&#39;, yaxt=&#39;n&#39;, ann=FALSE)
+rect(par(&quot;usr&quot;)[1],par(&quot;usr&quot;)[3],par(&quot;usr&quot;)[2],par(&quot;usr&quot;)[4],col = &quot;black&quot;)
+points(stars_df, col=&#39;white&#39;, pch=19, cex=0.2)</code></pre>
+<p><img src="/post/bomb_blog_Liam_files/figure-html/star_plot-1.png" width="672" /></p>
+<p>If only shown this picture, you might be hard-pressed to guess what the distribution refers to. That’s the beauty of statistics – the Poisson process can describe a range of wildly different phenomena that nevertheless share something fundamental in common. But while this sort of analysis is fun, it is worth remembering that these numbers have meaning through their connection to real events. Each data point signifies a real V-1 that was deliberately fired to kill civilians. We recommend reading some real memories from members of the public of that time, as archived by the <a href="https://www.bbc.co.uk/history/ww2peopleswar/categories/c54649/">BBC</a>.</p>
+</div>
+<div id="references" class="section level1">
+<h1><span class="header-section-number">7</span> References</h1>
+<p>We have collected some references for further reading, including some which we weren’t able to include in our main article.</p>
+<ul>
+<li><p>Aygin et al. (2019) Double cross: Geographic profiling of V-2 impact sites. <em>Spatial Science</em>. doi: <a href="https://doi.org/10.1080/14498596.2019.1642249">10.1080/14498596.2019.1642249</a></p></li>
+<li><p>Clarke, R. D. (1946) An application of the Poisson distribution. Journal of the Institute of Actuaries, 72, 481. <a href="https://www.cambridge.org/core/journals/journal-of-the-institute-of-actuaries/article/an-application-of-the-poisson-distribution/F75111847FDA534103BD4941BD96A78E">link</a></p></li>
+<li><p>Evans, C. G and Delaney, K. B. (2018) The V1 (Flying Bomb) attack on London (1944–1945); the applied geography of early cruise missile accuracy <em>Applied Geography</em> 99:44-53 doi: <a href="https://doi.org10.1016/j.apgeog.2018.07.019">10.1016/j.apgeog.2018.07.019</a></p></li>
+<li><p>Feller, W. (1950) An Introduction to Probability Theory and its Applications, Volume I. New York: John Wiley &amp; Sons. <a href="https://archive.org/details/AnIntroductionToProbabilityTheoryAndItsApplicationsVolume1/page/n171">pages discussing Clarke’s example</a></p></li>
+<li><p>Franklin, C. (2010) Flying Bombs on London, Summer of 1944. <a href="https://madvis.blogspot.com/2010/09/flying-bombs-on-london-summer-of-1944.html">link</a></p></li>
+<li><p>Lidstone, G. I. (1942) Notes on the Poisson frequency distribution. Journal of the Institute of Actuaries, 71, 284– 291. <a href="https://www.actuaries.org.uk/system/files/documents/pdf/0284-0291.pdf">link</a></p></li>
+<li><p>Memories of V-1s and V-2s. WW2 People’s War. <a href="https://www.bbc.co.uk/history/ww2peopleswar/categories/c54649/">link</a></p></li>
+<li><p>Presentation of an Institute Silver Medal to Mr. Roland David Clarke (1981). Journal of the Institute of Actuaries, 108, 7– 8. <a href="https://www.actuaries.org.uk/system/files/documents/pdf/0007-0008.pdf">link</a></p></li>
+<li><p>Pynchon, T. (1973) Gravity’s Rainbow. London: Cape. <a href="https://www.amazon.co.uk/Gravitys-Rainbow-Vintage-Thomas-Pynchon/dp/0099511754/ref=sr_1_1?keywords=gravity%27s+rainbow&amp;qid=1570467634&amp;sr=8-1">Amazon link</a></p></li>
+<li><p>Ward, L. (2015) The London County Council Bomb Damage Maps 1939–1945. London: Thames &amp; Hudson. <a href="https://www.amazon.co.uk/London-County-Council-Damage-1939-1945/dp/0500518254/">Amazon link</a></p></li>
+</ul>
+</div>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+  <hr/>
+  <a href="https://github.com/Luke-Shaw">GitHub</a> | <a href="https://twitter.com/lukefshaw">Twitter</a> | <a href="https://www.linkedin.com/in/luke-shaw-bba802153/">Linkedin</a>
+  
+  </footer>
+  </body>
+</html>
+

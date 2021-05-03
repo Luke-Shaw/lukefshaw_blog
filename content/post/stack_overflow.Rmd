@@ -1,0 +1,50 @@
+---
+title: "Asking Stack Overflow"
+author: "Luke Shaw"
+date: 2019-12-08
+output: 
+  blogdown::html_page:
+    number_sections: true
+
+---
+`r knitr::opts_chunk$set(cache=TRUE)`
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Intro
+
+[Stack Overflow](https://stackoverflow.com/) is known for being the site you inevitably arrive at when googling a coding question, and I have been passively using it for over 5 years. It's an invaluable tool when trying to debug code and understand error messages. 
+
+The basic idea is that someone has probably got stuck in the same place as you before, and if they asked on Stack Overflow there is then a searchable solution ready and waiting online, as members of the community can post answers.
+
+# My First Question
+
+Recently, I have been coding in Microsoft's flavour of SQL. It has been over a year since I was last using it, and I started getting frustrated when a join wasn't working as planned. I was ready to jump ship and wrangle the data in R instead, but that wasn't really the right solution as it would be complicating the matter if a colleague came to run the code. 
+
+After not being able to google my way to a solution, I took a deep breath and posted [my first question](https://stackoverflow.com/questions/59066778/t-sql-choosing-single-row-dependent-on-column-condition-and-frequency-in-table) onto Stack Overflow:
+
+![](/post/stack_overflow_files/stack_overflow_question.PNG)
+
+# The Response
+
+* Within a minute, I had a (potentially automated) question asking what I had tried already. I updated my question accordingly. 
+
+* Within 10 minutes, someone posted a solution. This solution pointed out an incompleteness in my toy example. I updated my question accordingly.
+
+* Within 2 hours, and a few conversation threads, 3 solutions had been posted. There was one I preferred, but all answered the question as I had posed it. 
+
+I was impressed by two things in my response:
+
+> Everyone was respectful.
+
+This is surprising as it is, after all, the internet.
+
+> People wanted to help.
+
+Yes there may be incentives within the points structure of the site, but these were friendly experts giving me a free helping hand.
+
+# Conclusion
+
+I do not usually post on the internet, for fear of a negative experience. However, this first posting on Stack Overflow was an entirely positive experience. Who knows, one day I may even be posting solutions on the site...

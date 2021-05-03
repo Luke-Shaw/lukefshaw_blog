@@ -1,0 +1,328 @@
+---
+title: UK river flow data
+author: Luke Shaw
+date: '2020-04-18'
+output: 
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+slug: river-flow-data
+
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#intro"><span class="toc-section-number">1</span> Intro</a></li>
+<li><a href="#project-reflections"><span class="toc-section-number">2</span> Project reflections</a><ul>
+<li><a href="#dates-dates-dates"><span class="toc-section-number">2.1</span> Dates dates dates</a></li>
+<li><a href="#data-cleaning"><span class="toc-section-number">2.2</span> Data cleaning</a></li>
+<li><a href="#more-dates"><span class="toc-section-number">2.3</span> More dates</a></li>
+<li><a href="#uncertainty-over-old-code"><span class="toc-section-number">2.4</span> Uncertainty over ‘old’ code</a></li>
+</ul></li>
+<li><a href="#trying-winfapreader"><span class="toc-section-number">3</span> Trying winfapReader</a><ul>
+<li><a href="#set-up-and-location"><span class="toc-section-number">3.1</span> Set-up and location</a></li>
+<li><a href="#getting-pot-data"><span class="toc-section-number">3.2</span> Getting POT data</a></li>
+<li><a href="#first-plot"><span class="toc-section-number">3.3</span> First plot</a></li>
+<li><a href="#consistent-time-period"><span class="toc-section-number">3.4</span> Consistent time period</a></li>
+<li><a href="#when-were-the-most-pots"><span class="toc-section-number">3.5</span> When were the most POTs?</a></li>
+</ul></li>
+<li><a href="#conclusion"><span class="toc-section-number">4</span> Conclusion</a></li>
+</ul>
+</div>
+
+<p>In this post I’m going to try out the recently published <a href="https://ilapros.github.io/winfapReader/">winfapReader</a> R package for getting UK river flow data, and think about what I have learnt since my involvement in the project three years ago.</p>
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<p>10 days ago, I received a notification for this tweet:</p>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+Four years after the first script my first attempt to a public R package is ready to be tested by others: <a href="https://t.co/kPR2cSDysQ">https://t.co/kPR2cSDysQ</a> is an interface with the <a href="https://twitter.com/UK_NRFA?ref_src=twsrc%5Etfw"><span class="citation">@UK_NRFA</span></a> extreme data locally or via their API. With thanks for the support/code to <a href="https://twitter.com/clavitolo?ref_src=twsrc%5Etfw"><span class="citation">@clavitolo</span></a> <a href="https://twitter.com/mattfry_ceh?ref_src=twsrc%5Etfw"><span class="citation">@mattfry_ceh</span></a> <a href="https://twitter.com/lukefshaw?ref_src=twsrc%5Etfw"><span class="citation">@lukefshaw</span></a>
+</p>
+— Ilaria Prosdocimi (<span class="citation">@ilapros</span>) <a href="https://twitter.com/ilapros/status/1247876020037959681?ref_src=twsrc%5Etfw">April 8, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Dr Ilaria Prosdocimi was my final year project (i.e. dissertation) supervisor at the University of Bath, and I last worked on river flow data about two and a half years ago. The package update was a very pleasant surprise and I am very grateful for being included as a contributor, as well as happy that code I wrote has been useful to somebody else!</p>
+</div>
+<div id="project-reflections" class="section level1">
+<h1><span class="header-section-number">2</span> Project reflections</h1>
+<p>The full pdf of my final report is available <a href="https://lukefshaw.netlify.com/20170508_final_year_project.pdf">here</a>.</p>
+<p>Here are some quick thoughts after re-reading that document for the first time since submission:</p>
+<div id="dates-dates-dates" class="section level2">
+<h2><span class="header-section-number">2.1</span> Dates dates dates</h2>
+<p>I discovered then, and still love now, the <code>lubridate</code> package for <em>anything</em> involving dates.</p>
+</div>
+<div id="data-cleaning" class="section level2">
+<h2><span class="header-section-number">2.2</span> Data cleaning</h2>
+<p>The following sentence rings true for every data project I have worked on since I wrote it three years ago:</p>
+<blockquote>
+<p>I spent at least half of this project cleaning the data</p>
+</blockquote>
+<p>For this project, the data cleaning/validation work even worked its way into the title - “Assessing the reliability of high flows records”.</p>
+</div>
+<div id="more-dates" class="section level2">
+<h2><span class="header-section-number">2.3</span> More dates</h2>
+<ul>
+<li>I’m reminded of the following lyric from the musical RENT:</li>
+</ul>
+<blockquote>
+<p>How do you measure, measure a year</p>
+</blockquote>
+<p>In my current job, the year can start in three different places:</p>
+<ol style="list-style-type: decimal">
+<li>Academic year - Sep - Aug</li>
+<li>Financial year - Apr - Mar</li>
+<li>Calendar year - Jan - Dec</li>
+</ol>
+<p>Re-reading my project made me laugh, as I had forgotten about the ‘Water Year’, which is Oct - Sep. In fact things get even more complicated as the years don’t all change at midnight on the 01st of the month, as the calendar year does. As mentioned above; thank heavens for <code>lubridate</code>!</p>
+</div>
+<div id="uncertainty-over-old-code" class="section level2">
+<h2><span class="header-section-number">2.4</span> Uncertainty over ‘old’ code</h2>
+<p>This is the first time that code I have written is truly public (other than a package which is so specific as to only be of use to one person in the world - whoever is in the job role I was in when I made it). It is somewhat daunting to think code I have written may be used by someone else.</p>
+<p>Looking back now at the code I think how I would do things differently, but realistically I’m not going to go back and re-write things, as that task will always fall towards the bottom of the pile, and the code works, after all. It is a terrible temptation to never put code online for fear it could be better, as it always could be better.</p>
+</div>
+</div>
+<div id="trying-winfapreader" class="section level1">
+<h1><span class="header-section-number">3</span> Trying winfapReader</h1>
+<p>Here is a testcase of winfapReader looking at water gauging stations around Bristol, where I am currently based. I was inspired by <a href="https://www.musclesofquartz.com/post/quick-review-of-winfapreader/">this blog</a> by Sean Turner.</p>
+<div id="set-up-and-location" class="section level2">
+<h2><span class="header-section-number">3.1</span> Set-up and location</h2>
+<pre class="r"><code>library(winfapReader) # new package to be trialled
+library(rnrfa) # NRFA official package
+library(tidyverse) # for data wrangling
+library(knitr) # for table output formatting </code></pre>
+<p>The <code>rnrfa</code> package is on CRAN and useful for finding which gauge stations exist. The NRFA also has a <a href="https://nrfa.ceh.ac.uk/data/search">search tool</a> where you can manually find stations.</p>
+<p>We’ll take the coordinates for the middle of Bristol, and define a bounding box for an area nearby:</p>
+<pre class="r"><code>bbw &lt;- 0.4 #bounding box width
+brist_latlong &lt;- c(51.4545, -2.5879)
+#get Bristol station data
+riv_brist &lt;- rnrfa::catalogue(bbox = list(lat_min = brist_latlong[1]-bbw/2, 
+                                        lat_max = brist_latlong[1]+bbw/2, 
+                                        lon_min = brist_latlong[2]-bbw/2, 
+                                        lon_max = brist_latlong[2]+bbw/2))
+
+#only keep stations with highest quality data. An important step, and as my 
+#final year project can attest there&#39;s lots to think about with data quality!
+riv_brist &lt;- riv_brist %&gt;% filter(`feh-pooling` == TRUE)
+
+knitr::kable(riv_brist %&gt;% select(id, name))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">53004</td>
+<td align="left">Chew at Compton Dando</td>
+</tr>
+<tr class="even">
+<td align="right">53006</td>
+<td align="left">Frome (Bristol) at Frenchay</td>
+</tr>
+<tr class="odd">
+<td align="right">53017</td>
+<td align="left">Boyd at Bitton</td>
+</tr>
+<tr class="even">
+<td align="right">53026</td>
+<td align="left">Frome (Bristol) at Frampton Cotterell</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>rnrfa::catalogue</code> function also returns a wealth of data which I won’t look at here, but just to say there are 101 columns-worth of info per site!</p>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/bristol_gauging_stations.PNG" /></p>
+<p>There are five stations are in the area, and one (id 52015 which is on the left of the image below) is deemed of not good enough quality to use here . So we’re left with four stations, shown in the image. The image is a screen grab from the NRFA <a href="https://nrfa.ceh.ac.uk/data/search">search tool</a>.</p>
+</div>
+<div id="getting-pot-data" class="section level2">
+<h2><span class="header-section-number">3.2</span> Getting POT data</h2>
+<p>The <code>winfapReader</code> package gives access to two sets of data:</p>
+<ol style="list-style-type: decimal">
+<li>Annual Maxima</li>
+<li>Peaks Over the Threshold (POT)</li>
+</ol>
+<p>My project was around the second, so that’s the data I’ll download and look at here. In a sentence:</p>
+<blockquote>
+<p>POT data are the values recorded anytime the river flow exceeds the threshold, set by the NRFA to give an average of between 3 and 5 peaks a year.</p>
+</blockquote>
+<p>Of course there is more information on the NRFA website, and in the project text, if you want to research further. It is interesting data.</p>
+<p>With the <code>winfapReader</code> package, you can connect to NRFA’s API and download the data you want from just inputting the station ID. It outputs the data in a list of three tables, so I’ve made this little wrapper function to pull into a tibble:</p>
+<pre class="r"><code>reshape_pot_list_to_tbl_df &lt;- function(id){
+  ## takes the station id, gets POT data, and reshapes into tbl_df
+  
+  # use winfapReader package to get list
+  pot_list &lt;- winfapReader::get_pot(id)
+  
+  # join two table outputs
+  pot_df &lt;- pot_list$tablePOT %&gt;% 
+    dplyr::left_join(pot_list$WaterYearInfo,by = &#39;WaterYear&#39;) %&gt;%
+    tibble::as_tibble()
+  
+  # add in start and end dates but as NA vals for all other cols
+  # maybe not worth it? Only included so all get_pot info kept
+  start_end_df &lt;- tibble::tibble(Station = id, 
+                                 Date = pot_list$dateRange)
+  pot_df &lt;- pot_df %&gt;% 
+    dplyr::bind_rows(start_end_df) %&gt;%
+    dplyr::arrange(Date)
+    
+  return(pot_df)
+}</code></pre>
+<p>Now we can download POT data in one line (though of course number of lines of code is not a great metric for code quality!):</p>
+<pre class="r"><code># all the heavy lifting happens in this line
+brist_pot_df &lt;- purrr::map_dfr(riv_brist$id, reshape_pot_list_to_tbl_df) 
+# add the name of the station for plotting later
+brist_pot_df &lt;- left_join(brist_pot_df, 
+                          riv_brist %&gt;% select(id, name),
+                          by = c(&quot;Station&quot;=&quot;id&quot;))
+
+# lets see what the data looks like
+str(brist_pot_df)</code></pre>
+<pre><code>## tibble [605 x 8] (S3: tbl_df/tbl/data.frame)
+##  $ Station        : num [1:605] 53004 53004 53004 53004 53004 ...
+##  $ Date           : Date[1:605], format: &quot;1992-11-29&quot; &quot;1992-11-30&quot; ...
+##  $ WaterYear      : num [1:605] NA 1992 1992 1992 1993 ...
+##  $ Flow           : num [1:605] NA 30.1 16.8 21 22.3 17.4 16.5 22.3 20.2 15.4 ...
+##  $ Stage          : num [1:605] NA 3.87 2.81 3.26 3.39 ...
+##  $ potPercComplete: num [1:605] NA 83.6 83.6 83.6 100 ...
+##  $ potThreshold   : num [1:605] NA 14.7 14.7 14.7 14.7 ...
+##  $ name           : chr [1:605] &quot;Chew at Compton Dando&quot; &quot;Chew at Compton Dando&quot; &quot;Chew at Compton Dando&quot; &quot;Chew at Compton Dando&quot; ...</code></pre>
+</div>
+<div id="first-plot" class="section level2">
+<h2><span class="header-section-number">3.3</span> First plot</h2>
+<p>Here’s an initial plot of the data we’ve got;</p>
+<pre class="r"><code>#only take records above 75% completeness (also removes start/end dates)
+plot_df &lt;- brist_pot_df %&gt;% filter(potPercComplete &gt; 75)
+
+#plots away!
+ggplot(plot_df, aes(x=Date, y = Flow)) +
+  geom_point() +
+  facet_wrap(~name, scales = &quot;free_y&quot;, ncol = 1) +
+  labs(y = &quot;Flow m/s&quot;,
+       title = &quot;POT all events by site&quot;)</code></pre>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/figure-html/plot1-1.png" width="672" /></p>
+<p>A few things spring to mind when looking at this plot:</p>
+<ol style="list-style-type: decimal">
+<li><p>The time period is different for different stations. Frome at Frenchay goes all the way back to the 1960s, whereas Chew at Compton Dando doesn’t start till the 1990s.</p></li>
+<li><p>What happened around 2013? Seem to be lots of peaks?</p></li>
+<li><p>The flow is different at different locations. The river Frome at Frenchay has a greater flow than it does at Frampton Cotterell, and a quick online search shows the Bradley Brook joins the River Frome between the two stations, so an increased flow makes sense. Always good to check the data, and keep the context in mind.</p></li>
+</ol>
+<p>So the initial plotting has given rise to a few interesting questions to be explored further.</p>
+</div>
+<div id="consistent-time-period" class="section level2">
+<h2><span class="header-section-number">3.4</span> Consistent time period</h2>
+<p>To compare across stations, I’ll restrict the time period to when all four have data:</p>
+<pre class="r"><code>valid_dates_df &lt;- brist_pot_df %&gt;% 
+  # the NA potThreshold columns is a proxy for start and end date as 
+  # reshape_pot_list_to_tbl_df joined the list outputs from winfapReader::get_pot()
+  filter(is.na(potThreshold)) %&gt;% 
+  select(Station, Date) %&gt;% 
+  group_by(Station) %&gt;% 
+  summarise(start = min(Date), end = max(Date)) %&gt;%
+  ungroup() %&gt;% pivot_longer(cols = c(&quot;start&quot;,&quot;end&quot;)) %&gt;%
+  # use the in-built Water Year finder function
+  mutate(wy = winfapReader::water_year(value))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>#start and end dates for where all stations have data
+start_wy = max(valid_dates_df$wy[valid_dates_df$name == &quot;start&quot;])
+end_wy = min(valid_dates_df$wy[valid_dates_df$name == &quot;end&quot;])
+
+#make a cut version of the data set
+brist_pot_filt_df &lt;- brist_pot_df %&gt;% 
+  filter(WaterYear &gt;= start_wy, WaterYear &lt;= end_wy)</code></pre>
+<p>Re-do our plot to check:</p>
+<pre class="r"><code>ggplot(brist_pot_filt_df %&gt;% filter(!is.na(Date)), aes(x=Date, y = Flow)) +
+  geom_point() +
+  facet_wrap(~name, scales = &quot;free_y&quot;, ncol = 1) +
+  labs(y = &quot;Flow m/s&quot;,
+       title = &quot;POT events by site for when all have data&quot;)</code></pre>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/figure-html/plot2-1.png" width="672" /></p>
+<p>Looks good!</p>
+</div>
+<div id="when-were-the-most-pots" class="section level2">
+<h2><span class="header-section-number">3.5</span> When were the most POTs?</h2>
+<p>If we wanted to know when the highest flow occurred each year, the POT data should not be the first port of call. The Annual Maximum data is for that purpose and, as measurements and calculations can differ, unfortunately it’s not always as simple as taking the max POT value each year. Again, this was a large part of my project…</p>
+<p>POT data has power in the number of peaks over the threshold. Let’s see which water years had the most peaks by site. Will it be the same year for all?</p>
+<pre class="r"><code>#number of POTs each year
+pot_each_year &lt;- brist_pot_df %&gt;%
+  group_by(Station, WaterYear, name) %&gt;%
+  summarise(num_pots = n()) %&gt;%
+  ungroup()</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;Station&#39;, &#39;WaterYear&#39; (override with `.groups` argument)</code></pre>
+<pre class="r"><code>#max pots for each site where they all had data
+max_pots &lt;- pot_each_year %&gt;%
+  filter(WaterYear &gt;= start_wy, WaterYear &lt;= end_wy) %&gt;%
+  group_by(Station) %&gt;%
+  filter(num_pots == max(num_pots)) %&gt;%
+  ungroup()
+
+knitr::kable(max_pots)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Station</th>
+<th align="right">WaterYear</th>
+<th align="left">name</th>
+<th align="right">num_pots</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">53004</td>
+<td align="right">2013</td>
+<td align="left">Chew at Compton Dando</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">53006</td>
+<td align="right">1998</td>
+<td align="left">Frome (Bristol) at Frenchay</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">53017</td>
+<td align="right">2012</td>
+<td align="left">Boyd at Bitton</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">53026</td>
+<td align="right">2012</td>
+<td align="left">Frome (Bristol) at Frampton Cotterell</td>
+<td align="right">9</td>
+</tr>
+</tbody>
+</table>
+<p>Oh, so not all in the same year of 2013. A visualisation will help put these results into context:</p>
+<pre class="r"><code># wrangle the data before plotting
+pot_each_year_filt_max_df &lt;- pot_each_year %&gt;% 
+  filter(WaterYear &gt;= start_wy, WaterYear &lt;= end_wy) %&gt;%
+  # left join onto max_pots and create a column max which says if it was 
+  # a max number of POT that year
+  left_join(max_pots %&gt;% mutate(max=&#39;Yes&#39;) %&gt;% select(Station, WaterYear, max), 
+            by = c(&#39;Station&#39;,&#39;WaterYear&#39;)) %&gt;%
+  mutate(max = ifelse(is.na(max),&#39;No&#39;,max))
+
+ggplot(pot_each_year_filt_max_df, aes(x = WaterYear, y = num_pots, fill=max)) +
+  geom_bar(stat=&#39;identity&#39;) +
+  facet_wrap(~name, ncol = 1) +
+  labs(y = &quot;Number of POTs&quot;, title = &quot;Number of POTs each Water Year by site&quot;)</code></pre>
+<p><img src="/post/2020-04-11-uk-river-flow-data_files/figure-html/pots-each-year-plot-1.png" width="672" /></p>
+<p>An interesting visualisation! Maybe not quite what we were expecting, but again it invites further questions about the data. Clearly only two sites (Boyd at Bitton and Frome at Frenchay) had most POTs in the same year - the 2012 Water Year. There was also lots of POTs in 1998, the most for Frome at Frenchay and second or third most for the other three sites.</p>
+<p>This data is of course very rich - there’s more we could look at. Such as:</p>
+<ul>
+<li>individual dates</li>
+<li>time of year</li>
+<li>follow water flow down a river system (as opposed to picking an area)</li>
+</ul>
+<p>and much else too! That’s enough for me for today, though.</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">4</span> Conclusion</h1>
+<p>The <code>winfapReader</code> package is very cool, and very powerful when combined with the <code>rnrfa</code> one. I only looked at a specific area, and it was quick to get the data I wanted.</p>
+<p>Thank you Dr Ilaria Proscdocimi. I am flattered to be included as a contributor to this work.</p>
+<p>Thank you also to my father, who proofread this blog and made all the words nicerer.</p>
+</div>

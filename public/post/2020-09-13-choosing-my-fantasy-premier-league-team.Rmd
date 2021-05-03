@@ -1,0 +1,43 @@
+---
+title: Choosing my Fantasy Premier League Team
+author: Luke Shaw
+date: '2020-09-13'
+output: 
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+slug: choosing-my-fantasy-premier-league-team
+draft: yes
+categories: []
+tags: []
+---
+  
+# Intro
+  
+This weekend the Premier League kicked-off for the 2020/21 season. This means Fantasy Premier League (FPL) is also back, the game of picking players from across the league into a fictional team, and how they perform in real life corresponds to the points they get.
+
+This year, I have chosen to do some data visualisation to chose my team. This blog details my rough-and-ready approach.
+
+# Defining the task
+
+Without going into to much detail
+
+# Getting the data
+
+# Iteratively picking my 15 players
+
+# The final 11
+
+# Assumptions made along the way
+
+Football is immensely complicated, and as so much money is made through the game there are clearly cutting-edge techniques being applied to get as much of an edge in quantifying the incredible uncertainty.
+
+# How did it go?
+
+# Conclusion and next steps
+
+I enjoyed the hours spent putting this together and thinking about data in combination with a subject I enjoy. 
+
+My downfall this year is most likely to be the same as every year, which is losing interest and forgetting to update my team each week. To combat that I have signed-up to calendar notifications for the gameweek deadlines, but realistically it will probably still happen.
+
+The next steps would be to work on a methodology for picking the starting 11 each week, and deciding how to use the one transfer per gameweek. There are also 3 wildcard options to consider.
